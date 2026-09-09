@@ -73,8 +73,47 @@
         <button id="edit-profile-btn" class="nav-btn">
           <span>my focus</span>
         </button>
+
+        <!-- Mobile Sidebar Hamburger Button -->
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open navigation menu" type="button">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </nav>
+
+    <!-- Mobile Slide-Out Sidebar & Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="mobile-sidebar" id="mobile-sidebar" aria-label="Mobile Navigation">
+      <div class="sidebar-header">
+        <div class="logo">
+          <svg class="header-spiral" viewBox="0 0 32 32" fill="none" stroke="#E28CA5" stroke-width="2.2" stroke-linecap="round" style="width: 22px; height: 22px;">
+            <path d="M16 16c0-2.2 1.8-4 4-4s4 1.8 4 4-2.7 6-6 6-8-3.6-8-8 4.5-10 10-10"/>
+            <circle cx="16" cy="16" r="1.5" fill="#E28CA5"/>
+          </svg>
+          <span style="font-size: 1.6rem;">lumen</span>
+        </div>
+        <button class="modal-close" id="mobile-sidebar-close" aria-label="Close menu" style="position: static; width: 30px; height: 30px;">✕</button>
+      </div>
+
+      <ul class="sidebar-links">
+        <li><a href="#practice" class="sidebar-link"><span class="dot">✿</span> practice</a></li>
+        <li><a href="#calendar" class="sidebar-link"><span class="dot">✿</span> calendar</a></li>
+        <li><a href="#journal" class="sidebar-link"><span class="dot">✿</span> journal</a></li>
+        <li><a href="#todo" class="sidebar-link"><span class="dot">✿</span> to-do</a></li>
+        <li><a href="#lockin" class="sidebar-link"><span class="dot">✿</span> lock in</a></li>
+        <li><a href="#garden" class="sidebar-link"><span class="dot">✿</span> garden</a></li>
+        <li><a href="#visionboard" class="sidebar-link"><span class="dot">✿</span> vision board</a></li>
+        <li><a href="#letitgo" class="sidebar-link"><span class="dot">✿</span> let it go</a></li>
+      </ul>
+
+      <div class="sidebar-footer">
+        <button id="sidebar-profile-btn" class="nav-btn" style="width: 100%; justify-content: center;">
+          <span>my focus</span>
+        </button>
+      </div>
+    </aside>
 
     <!-- Ambient Soundscape Strip (Minimal, No Emojis) -->
     <div class="soundscape-strip">
@@ -293,7 +332,7 @@
   </div><!-- /.page -->
 
   <!-- Lumi Floating Chat Bubble & Drawer -->
-  <div class="lumi-bubble" id="lumi-trigger" title="Talk softly with Lumi">lumi</div>
+  <button class="lumi-bubble" id="lumi-trigger" type="button" aria-label="Chat with Lumi" title="Talk softly with Lumi" onclick="window.LumenCompanion &amp;&amp; window.LumenCompanion.toggle()">lumi</button>
 
   <div class="lumi-chat-drawer" id="lumi-drawer">
     <div class="lumi-chat-header">
@@ -301,7 +340,10 @@
         <h4>lumi ✿</h4>
         <span>gentle companion</span>
       </div>
-      <button class="modal-close" id="lumi-close-btn" style="position: static; width: 26px; height: 26px;">✕</button>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button id="lumi-key-btn" title="Set AI API Key (Saved in browser)" style="background: transparent; border: 1px solid rgba(74,66,55,0.18); border-radius: 9999px; padding: 3px 10px; font-size: 0.76rem; color: var(--ink-soft); cursor: pointer;">key</button>
+        <button class="modal-close" id="lumi-close-btn" style="position: static; width: 26px; height: 26px;">✕</button>
+      </div>
     </div>
     <div class="lumi-quick-row">
       <button class="lumi-chip" data-text="feeling doubtful today">feeling doubtful</button>

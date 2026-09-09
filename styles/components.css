@@ -1,6 +1,6 @@
 /* ==========================================================================
    Lumen: Components Stylesheet
-   Faithfully matching the user's reference design with full interactivity
+   Faithfully matching the user's reference design with readable font balance
    ========================================================================== */
 
 /* ---------- Hero ---------- */
@@ -19,7 +19,7 @@
 
 .hero .lead {
   font-family: var(--font-accent);
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   color: var(--ink-soft);
   margin-top: 10px;
 }
@@ -29,7 +29,7 @@
   margin-top: 38px;
   background: var(--white);
   border-radius: 26px 26px 30px 24px;
-  padding: 22px 40px;
+  padding: 22px 38px;
   box-shadow: 0 10px 30px rgba(120, 100, 70, 0.08);
   transform: rotate(-1.2deg);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -44,6 +44,7 @@
 }
 
 .goal-card .tag {
+  font-family: var(--font-body);
   font-size: 0.8rem;
   letter-spacing: 0.02em;
   color: var(--ink-soft);
@@ -53,20 +54,22 @@
 }
 
 .goal-card .goal {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  margin-top: 4px;
+  font-family: var(--font-body);
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin-top: 6px;
   color: var(--ink);
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .goal-card .why-sub {
-  font-family: var(--font-accent);
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
   color: var(--ink-soft);
   margin-top: 8px;
   border-top: 1px dashed rgba(74, 66, 55, 0.15);
   padding-top: 6px;
+  font-style: italic;
 }
 
 /* ---------- Practice Path ---------- */
@@ -78,9 +81,9 @@
 .step {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 24px;
   max-width: 520px;
-  margin-bottom: 52px;
+  margin-bottom: 48px;
   background: var(--white);
   border-radius: 28px;
   padding: 22px 26px;
@@ -106,37 +109,40 @@
 
 .step-num {
   font-family: var(--font-display);
-  font-size: 2.3rem;
+  font-size: 2.2rem;
   color: var(--sage);
-  min-width: 40px;
+  min-width: 36px;
   line-height: 1;
 }
 
 .step h3 {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  margin-bottom: 2px;
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 3px;
   color: var(--ink);
 }
 
 .step p {
-  font-size: 0.92rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
   color: var(--ink-soft);
 }
 
 /* ---------- Section Headings ---------- */
 .sec-head {
   text-align: center;
-  margin-bottom: 46px;
+  margin-bottom: 44px;
 }
 
 .sec-head h2 {
   font-family: var(--font-display);
-  font-size: 2.6rem;
+  font-size: 2.8rem;
   color: var(--ink);
 }
 
 .sec-head .accent-script {
+  font-family: var(--font-accent);
   color: var(--ink-soft);
   font-size: 1.15rem;
 }
@@ -158,8 +164,9 @@
 }
 
 .card h3 {
-  font-family: var(--font-display);
-  font-size: 1.7rem;
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  font-weight: 700;
   margin-bottom: 14px;
   color: var(--ink);
 }
@@ -173,8 +180,9 @@
 }
 
 .cal-month-name {
-  font-family: var(--font-accent);
-  font-size: 1.1rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--ink-soft);
 }
 
@@ -201,10 +209,11 @@
 }
 
 .cal-day-label {
+  font-family: var(--font-body);
   font-size: 0.76rem;
   text-align: center;
   color: var(--ink-soft);
-  font-weight: 600;
+  font-weight: 700;
   padding-bottom: 4px;
 }
 
@@ -213,7 +222,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
   color: var(--ink-soft);
   border-radius: 10px;
   position: relative;
@@ -234,7 +244,7 @@
 .cal-day.marked {
   background: var(--sage);
   color: var(--white);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .cal-day.marked::after {
@@ -248,13 +258,13 @@
 
 /* ---------- Journal ---------- */
 .journal-lines {
-  min-height: 120px;
+  min-height: 100px;
   flex-grow: 1;
 }
 
 .journal-lines p {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
   color: var(--ink-soft);
   border-bottom: 1px dashed rgba(74, 66, 55, 0.2);
   padding-bottom: 8px;
@@ -262,7 +272,8 @@
 }
 
 .journal-prompt {
-  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
   color: var(--ink-soft);
   margin-top: 10px;
   cursor: pointer;
@@ -274,7 +285,6 @@
   color: var(--ink);
 }
 
-/* Journal input inline drawer */
 .journal-compose {
   margin-top: 12px;
   display: flex;
@@ -316,7 +326,8 @@
 }
 
 .todo-item span {
-  font-size: 0.95rem;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
   flex-grow: 1;
 }
 
@@ -385,13 +396,15 @@
 
 .pomo-time {
   position: relative;
-  font-family: var(--font-display);
+  font-family: var(--font-body);
   font-size: 2.2rem;
+  font-weight: 700;
   color: var(--ink);
 }
 
 .pomo-label {
-  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
   color: var(--ink-soft);
 }
 
@@ -421,7 +434,8 @@
 }
 
 .garden-hint {
-  font-size: 0.82rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
   color: var(--ink-soft);
   margin-top: 6px;
 }
@@ -464,10 +478,11 @@
 }
 
 .flip-face p {
-  font-family: var(--font-display);
-  font-size: 1.65rem;
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  font-weight: 600;
   color: var(--ink);
-  line-height: 1.25;
+  line-height: 1.3;
 }
 
 .flip-face .author {
@@ -507,8 +522,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-accent);
-  font-size: 0.95rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
   text-align: center;
   padding: 12px;
   color: var(--ink);
@@ -553,7 +568,6 @@
 .vb5 { background: var(--cream); border: 1px solid rgba(0,0,0,0.05); }
 .vb6 { background: var(--sky); font-size: 1.4rem; }
 
-/* Dropzone placeholder card */
 .vb-add-card {
   background: rgba(255, 255, 255, 0.7);
   border: 1.5px dashed rgba(74, 66, 55, 0.25);
@@ -580,8 +594,8 @@
   background: var(--cream);
   border-radius: 16px;
   padding: 16px 18px;
-  font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
   color: var(--ink-soft);
   border: 1px dashed rgba(74, 66, 55, 0.25);
   width: 100%;
@@ -595,7 +609,8 @@
 }
 
 .doubt-note {
-  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
   color: var(--ink-soft);
   margin-top: 8px;
   display: flex;
@@ -623,56 +638,61 @@ footer {
 
 footer .script {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--ink);
 }
 
 footer .sub {
-  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
   color: var(--ink-soft);
   margin-top: 8px;
 }
 
-/* ---------- Lumi Floating Chat Bubble ---------- */
+/* ---------- Lumi Floating Chat Bubble & Drawer ---------- */
 .lumi-bubble {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
-  z-index: 500;
-  width: 64px;
-  height: 64px;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  width: 62px;
+  height: 62px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--blush), var(--butter));
-  box-shadow: 0 10px 26px rgba(120, 100, 70, 0.25);
+  box-shadow: 0 10px 26px rgba(120, 100, 70, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.45rem;
   color: var(--ink);
   cursor: pointer;
+  pointer-events: auto;
+  user-select: none;
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  outline: none;
 }
 
-.lumi-bubble:hover {
-  transform: scale(1.08);
+.lumi-bubble:hover, .lumi-bubble:active {
+  animation-play-state: paused;
+  transform: scale(1.1);
 }
 
 /* Lumi Chat Drawer Panel */
 .lumi-chat-drawer {
   position: fixed;
-  bottom: 102px;
-  right: 28px;
+  bottom: 96px;
+  right: 24px;
   width: 350px;
-  max-width: calc(100vw - 40px);
-  height: 480px;
+  max-width: calc(100vw - 36px);
+  height: 490px;
   max-height: calc(100vh - 120px);
   background: var(--white);
   border-radius: 24px;
-  box-shadow: 0 18px 45px rgba(74, 66, 55, 0.18);
-  border: 1px solid rgba(74, 66, 55, 0.08);
-  z-index: 501;
+  box-shadow: 0 20px 50px rgba(74, 66, 55, 0.22);
+  border: 1px solid rgba(74, 66, 55, 0.1);
+  z-index: 10000;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -699,11 +719,13 @@ footer .sub {
 
 .lumi-chat-header h4 {
   font-family: var(--font-display);
-  font-size: 1.45rem;
+  font-size: 1.6rem;
   color: var(--ink);
+  line-height: 1;
 }
 
 .lumi-chat-header span {
+  font-family: var(--font-body);
   font-size: 0.8rem;
   color: var(--ink-soft);
   margin-left: 6px;
@@ -722,8 +744,9 @@ footer .sub {
   max-width: 85%;
   padding: 10px 14px;
   border-radius: 16px;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.45;
 }
 
 .lumi-msg.assistant {
@@ -783,4 +806,11 @@ footer .sub {
   .vision-board { grid-template-columns: repeat(2, 1fr); }
   .step { max-width: 100%; }
   .step:nth-child(even) { margin-left: 0; }
+  
+  .lumi-chat-drawer {
+    right: 14px;
+    bottom: 92px;
+    width: calc(100vw - 28px);
+    height: 72vh;
+  }
 }

@@ -61,8 +61,8 @@ class LumenApp {
   }
 
   bindNavLinks() {
-    // Smooth scrolling to exact sections
-    document.querySelectorAll('.nav-link').forEach(link => {
+    // Smooth scrolling to exact sections (desktop nav and mobile sidebar)
+    document.querySelectorAll('.nav-link, .sidebar-link').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const targetId = link.getAttribute('href');
@@ -73,7 +73,30 @@ class LumenApp {
             window.LumenAudio?.playPop();
           }
         }
+        this.closeMobileSidebar();
       });
+    });
+
+    // Mobile Sidebar controls
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const closeSidebarBtn = document.getElementById('mobile-sidebar-close');
+    const overlay = document.getElementById('sidebar-overlay');
+    const sidebarProfileBtn = document.getElementById('sidebar-profile-btn');
+
+    menuBtn?.addEventListener('click', () => this.openMobileSidebar());
+    closeSidebarBtn?.addEventListener('click', () => this.closeMobileSidebar());
+    overlay?.addEventListener('click', () => this.closeMobileSidebar());
+
+    sidebarProfileBtn?.addEventListener('click', () => {
+      this.closeMobileSidebar();
+      document.getElementById('edit-profile-btn')?.click();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.closeMobileSidebar();
+        document.getElementById('goal-edit-modal')?.classList.remove('active');
+      }
     });
 
     // Profile edit modal trigger
@@ -104,6 +127,27 @@ class LumenApp {
       document.getElementById('goal-edit-modal')?.classList.remove('active');
       window.LumenAudio?.playSuccessChime();
     });
+  }
+
+  openMobileSidebar() {
+    const sidebar = document.getElementById('mobile-sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    if (sidebar && overlay) {
+      sidebar.classList.add('active');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      window.LumenAudio?.playPop();
+    }
+  }
+
+  closeMobileSidebar() {
+    const sidebar = document.getElementById('mobile-sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    if (sidebar && overlay) {
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
   }
 
   initPoppableBubbles() {
