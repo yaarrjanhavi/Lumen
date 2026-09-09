@@ -283,10 +283,11 @@
           <div class="accent-script">drag &amp; drop images or notes · the life you're building</div>
         </div>
 
-        <div class="vision-board-header-bar">
-          <span style="font-size: 0.85rem; color: var(--ink-soft);">drop images directly onto the board below:</span>
+        <div class="vision-board-header-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+          <span style="font-size: 1rem; color: var(--ink-soft);">drop images or pin pastel text cards below:</span>
           <div style="display: flex; gap: 8px;">
-            <button id="vb-add-note-btn" class="nav-btn">+ add note</button>
+            <button id="vb-upload-img-btn" class="nav-btn">+ add image</button>
+            <button id="vb-add-note-btn" class="nav-btn">+ add text</button>
           </div>
         </div>
 
@@ -398,27 +399,36 @@
     </div>
   </div>
 
-  <!-- Vision Board Add Note Modal -->
+  <!-- Vision Board Add Note / Text Modal -->
   <div class="modal-overlay" id="vision-add-modal">
     <div class="modal-content">
       <button class="modal-close" id="vision-modal-close">✕</button>
-      <h3 style="font-family: var(--font-display); font-size: 2.1rem; margin-bottom: 4px;">pin a note</h3>
-      <p style="font-family: var(--font-accent); font-size: 1.1rem; color: var(--ink-soft); margin-bottom: 16px;">add words or affirmations to your vision board</p>
+      <h3 style="font-family: var(--font-display); font-size: 2.3rem; margin-bottom: 4px;">pin text card</h3>
+      <p style="font-family: var(--font-accent); font-size: 1.25rem; color: var(--ink-soft); margin-bottom: 16px;">add words, intentions, or affirmations to your vision board</p>
 
-      <textarea id="vision-note-text" rows="3" placeholder="words or intentions for your vision board..." style="margin-bottom: 12px;"></textarea>
+      <!-- Live Preview Card -->
+      <div id="vision-text-preview" class="vb-preview-card" style="background: #F5D9E6; margin-bottom: 16px; padding: 20px; border-radius: 20px; min-height: 90px; display: flex; align-items: center; justify-content: center; text-align: center; font-family: var(--font-body); font-size: 1.35rem; line-height: 1.4; box-shadow: 0 4px 14px rgba(120, 100, 70, 0.08);">
+        <span id="vision-preview-text">your intention here ✿</span>
+      </div>
 
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="display: flex; align-items: center; gap: 6px;">
-          <span style="font-size: 0.82rem; color: var(--ink-soft);">color:</span>
-          <select id="vision-note-color" style="padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(74,66,55,0.18);">
-            <option value="var(--sky)">sky blue</option>
-            <option value="var(--blush)">blush pink</option>
-            <option value="var(--sage)">sage green</option>
-            <option value="var(--butter)">butter yellow</option>
-            <option value="var(--cream)">soft cream</option>
-          </select>
+      <textarea id="vision-note-text" rows="3" placeholder="write your intention or affirmation here..." style="margin-bottom: 16px; font-size: 1.15rem;"></textarea>
+
+      <!-- Pastel Color Palette Selection -->
+      <div style="margin-bottom: 22px;">
+        <label style="display: block; font-size: 0.95rem; color: var(--ink-soft); margin-bottom: 10px; font-weight: 600;">choose pastel background:</label>
+        <div class="pastel-swatches" id="pastel-palette">
+          <button type="button" class="swatch-btn active" data-color="#F5D9E6" style="background: #F5D9E6;" title="Blush Pink"></button>
+          <button type="button" class="swatch-btn" data-color="#CFE6F2" style="background: #CFE6F2;" title="Sky Blue"></button>
+          <button type="button" class="swatch-btn" data-color="#C7D6B8" style="background: #C7D6B8;" title="Sage Green"></button>
+          <button type="button" class="swatch-btn" data-color="#EFE0A8" style="background: #EFE0A8;" title="Butter Yellow"></button>
+          <button type="button" class="swatch-btn" data-color="#FBF6EE" style="background: #FBF6EE; border: 1.5px solid rgba(74,66,55,0.18);" title="Soft Cream"></button>
+          <button type="button" class="swatch-btn" data-color="#E8D7F1" style="background: #E8D7F1;" title="Lavender Lilac"></button>
+          <button type="button" class="swatch-btn" data-color="#FDE2D2" style="background: #FDE2D2;" title="Peach Blossom"></button>
         </div>
-        <button id="vision-save-btn" class="nav-btn" style="background: var(--sage); color: white; border-color: var(--sage);">pin note</button>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
+        <button id="vision-save-btn" class="nav-btn" style="background: var(--sage); color: white; border-color: var(--sage); padding: 8px 24px; font-size: 1.05rem;">pin to board ✿</button>
       </div>
     </div>
   </div>

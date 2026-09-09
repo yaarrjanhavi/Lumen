@@ -63,17 +63,18 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: 19px;
 }
 
 body {
   font-family: var(--font-body);
+  font-size: 1.12rem;
   color: var(--ink);
   background: linear-gradient(180deg, var(--sky) 0%, var(--cream) 18%, var(--cream) 60%, var(--blush) 100%);
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 ::selection {
@@ -266,12 +267,12 @@ section {
 }
 
 .nav-link {
-  font-size: 0.92rem;
+  font-size: 1.05rem;
   color: var(--ink-soft);
   text-decoration: none;
   font-family: var(--font-body);
   font-weight: 500;
-  padding: 5px 10px;
+  padding: 5px 12px;
   border-radius: 9999px;
   transition: all 0.2s ease;
   cursor: pointer;
@@ -292,9 +293,9 @@ section {
   background: var(--white);
   border: 1px solid rgba(74, 66, 55, 0.15);
   border-radius: 9999px;
-  padding: 6px 14px;
+  padding: 6px 16px;
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: var(--ink-soft);
   cursor: pointer;

@@ -1,12 +1,13 @@
 /**
- * Lumen: Vision Board with Drag & Drop Images & Aesthetic Notes
- * Allows dropping images directly from desktop/files or typing notes.
+ * Lumen: Vision Board with Drag & Drop Images & Pastel Text Cards
+ * Allows dropping images directly from desktop/files or pinning custom pastel text cards.
  */
 
 class LumenVisionBoard {
   constructor() {
     this.container = null;
     this.fileInput = null;
+    this.selectedColor = '#F5D9E6';
   }
 
   init() {
@@ -53,25 +54,76 @@ class LumenVisionBoard {
       }
     });
 
-    document.getElementById('vb-add-note-btn')?.addEventListener('click', () => {
-      document.getElementById('vision-add-modal')?.classList.add('active');
+    // Top action buttons
+    document.getElementById('vb-upload-img-btn')?.addEventListener('click', () => {
+      this.fileInput?.click();
     });
 
-    document.getElementById('vision-modal-close')?.addEventListener('click', () => {
-      document.getElementById('vision-add-modal')?.classList.remove('active');
+    const modal = document.getElementById('vision-add-modal');
+    const noteInput = document.getElementById('vision-note-text');
+    const preview = document.getElementById('vision-text-preview');
+    const previewText = document.getElementById('vision-preview-text');
+
+    const openModal = () => {
+      if (modal) {
+        modal.classList.add('active');
+        if (noteInput) {
+          noteInput.value = '';
+          noteInput.focus();
+        }
+        if (previewText) {
+          previewText.textContent = 'your intention here ✿';
+        }
+        if (preview) {
+          preview.style.background = this.selectedColor;
+        }
+      }
+    };
+
+    const closeModal = () => {
+      if (modal) modal.classList.remove('active');
+    };
+
+    document.getElementById('vb-add-note-btn')?.addEventListener('click', openModal);
+    document.getElementById('vision-modal-close')?.addEventListener('click', closeModal);
+
+    modal?.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
     });
 
+    // Pastel swatches selection
+    const swatchBtns = document.querySelectorAll('#pastel-palette .swatch-btn');
+    swatchBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        swatchBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        this.selectedColor = btn.dataset.color || '#F5D9E6';
+        if (preview) {
+          preview.style.background = this.selectedColor;
+        }
+        window.LumenAudio?.playPop();
+      });
+    });
+
+    // Live typing preview
+    noteInput?.addEventListener('input', (e) => {
+      if (previewText) {
+        previewText.textContent = e.target.value.trim() || 'your intention here ✿';
+      }
+    });
+
+    // Save note
     document.getElementById('vision-save-btn')?.addEventListener('click', () => {
-      const text = document.getElementById('vision-note-text')?.value.trim();
-      const color = document.getElementById('vision-note-color')?.value || 'var(--cream)';
+      const text = noteInput?.value.trim();
       if (text) {
         window.LumenState.addVisionItem({
           type: 'note',
           text: text,
-          bg: color
+          bg: this.selectedColor || '#F5D9E6'
         });
-        document.getElementById('vision-note-text').value = '';
-        document.getElementById('vision-add-modal')?.classList.remove('active');
+        if (noteInput) noteInput.value = '';
+        if (previewText) previewText.textContent = 'your intention here ✿';
+        closeModal();
         window.LumenAudio?.playPop();
       }
     });
@@ -127,17 +179,43 @@ class LumenVisionBoard {
       this.container.appendChild(el);
     });
 
-    const addCard = document.createElement('div');
-    addCard.className = 'vb-item vb-add-card';
-    addCard.title = 'Drag & drop image here, or click to upload';
-    addCard.innerHTML = `
-      <span style="font-size: 1.5rem; color: var(--sage); line-height: 1;">+</span>
-      <span style="font-size: 0.8rem; color: var(--ink-soft);">drop image here</span>
+    // 1. Add Image Card ("drop image")
+    const addImageCard = document.createElement('div');
+    addImageCard.className = 'vb-item vb-add-card';
+    addImageCard.title = 'Drag & drop image here, or click to upload';
+    addImageCard.innerHTML = `
+      <span style="font-size: 1.6rem; color: var(--sage); line-height: 1;">+</span>
+      <span style="font-size: 0.82rem; color: var(--ink-soft); font-weight: 600;">drop image</span>
     `;
-    addCard.addEventListener('click', () => {
+    addImageCard.addEventListener('click', () => {
       this.fileInput?.click();
     });
-    this.container.appendChild(addCard);
+    this.container.appendChild(addImageCard);
+
+    // 2. Add Text Card ("add text")
+    const addTextCard = document.createElement('div');
+    addTextCard.className = 'vb-item vb-add-card vb-add-text-card';
+    addTextCard.title = 'Pin a pastel text card or intention';
+    addTextCard.innerHTML = `
+      <span style="font-size: 1.5rem; color: #E28CA5; line-height: 1;">✍</span>
+      <span style="font-size: 0.82rem; color: var(--ink-soft); font-weight: 600;">add text</span>
+    `;
+    addTextCard.addEventListener('click', () => {
+      const modal = document.getElementById('vision-add-modal');
+      const noteInput = document.getElementById('vision-note-text');
+      const previewText = document.getElementById('vision-preview-text');
+      const preview = document.getElementById('vision-text-preview');
+      if (modal) {
+        modal.classList.add('active');
+        if (noteInput) {
+          noteInput.value = '';
+          noteInput.focus();
+        }
+        if (previewText) previewText.textContent = 'your intention here ✿';
+        if (preview) preview.style.background = this.selectedColor;
+      }
+    });
+    this.container.appendChild(addTextCard);
   }
 }
 
