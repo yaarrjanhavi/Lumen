@@ -461,11 +461,39 @@ section {
   transition: all 0.2s ease;
 }
 
+.soundscape-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--ink);
+}
+
 .soundscape-btn.active {
   background: var(--sage);
   color: var(--white);
   border-color: var(--sage);
   font-weight: 600;
+}
+
+.soundscape-btn.active:hover {
+  background: var(--sage);
+  color: var(--white);
+}
+
+.soundscape-now-playing {
+  font-family: var(--font-accent);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  transition: opacity 0.3s ease;
+}
+
+.custom-song-del {
+  display: inline-block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.custom-song-del:hover {
+  opacity: 1 !important;
+  transform: scale(1.2);
+  color: var(--ink);
 }
 
 /* Modals */

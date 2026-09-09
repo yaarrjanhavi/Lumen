@@ -10,9 +10,20 @@ class LumenAudioEngine {
     this.ambientGain = null;
     this.ambientNodes = [];
     this.currentAmbientType = 'off';
+    this.currentAudio = null;
     this.rainBuffer = null;
     this.customSounds = {};
     this.availableCustomSounds = new Set();
+    
+    // Direct audio file mappings for real MP3s
+    this.soundFiles = {
+      pop: 'sounds/button.mp3',
+      bubble: 'sounds/bubble.mp3',
+      chime: 'sounds/chime.mp3',
+      rain: 'sounds/rain.mp3',
+      garden: 'sounds/garden.mp3',
+      bowl: 'sounds/singing-bowl.mp3'
+    };
   }
 
   init() {
@@ -57,11 +68,24 @@ class LumenAudioEngine {
   /**
    * Instant tactile button pop (0ms delay)
    */
+  /**
+   * Button pop (plays sounds/button.mp3 with synth fallback)
+   */
   playPop() {
     if (!this.isSoundEnabled()) return;
     this.init();
-    if (!this.ctx) return;
+    try {
+      const audio = new Audio(this.soundFiles.pop);
+      audio.volume = 0.35;
+      const p = audio.play();
+      if (p !== undefined) p.catch(() => this.playPopSynth());
+    } catch (e) {
+      this.playPopSynth();
+    }
+  }
 
+  playPopSynth() {
+    if (!this.ctx) return;
     try {
       const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
@@ -83,13 +107,23 @@ class LumenAudioEngine {
   }
 
   /**
-   * Instant bubble pop (0ms delay)
+   * Bubble pop (plays sounds/bubble.mp3 with synth fallback)
    */
   playBubblePop() {
     if (!this.isSoundEnabled()) return;
     this.init();
-    if (!this.ctx) return;
+    try {
+      const audio = new Audio(this.soundFiles.bubble);
+      audio.volume = 0.4;
+      const p = audio.play();
+      if (p !== undefined) p.catch(() => this.playBubblePopSynth());
+    } catch (e) {
+      this.playBubblePopSynth();
+    }
+  }
 
+  playBubblePopSynth() {
+    if (!this.ctx) return;
     try {
       const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
@@ -162,13 +196,23 @@ class LumenAudioEngine {
   }
 
   /**
-   * Instant Singing Bowl / Focus Completion Chime
+   * Focus / Completion Chime (plays sounds/chime.mp3 with synth fallback)
    */
   playZenChime() {
     if (!this.isSoundEnabled()) return;
     this.init();
-    if (!this.ctx) return;
+    try {
+      const audio = new Audio(this.soundFiles.chime);
+      audio.volume = 0.45;
+      const p = audio.play();
+      if (p !== undefined) p.catch(() => this.playZenChimeSynth());
+    } catch (e) {
+      this.playZenChimeSynth();
+    }
+  }
 
+  playZenChimeSynth() {
+    if (!this.ctx) return;
     try {
       const fundamental = 396;
       const harmonics = [1, 2.01, 3.02, 4.04];
@@ -195,13 +239,23 @@ class LumenAudioEngine {
   }
 
   /**
-   * Instant Ambient Soundscapes (Zero 600ms delay, instant audio playback)
+   * Ambient Soundscapes & Song Playback
+   * Plays actual MP3 files from sounds/ folder or user-added custom songs with synth fallback.
    */
-  setAmbient(type, volume = 0.25) {
+  setAmbient(type, volume = 0.25, customSrc = null) {
     this.init();
     this.currentAmbientType = type;
 
-    // Immediately stop running ambient sounds
+    // Immediately stop running HTML5 audio element
+    if (this.currentAudio) {
+      try {
+        this.currentAudio.pause();
+        this.currentAudio.currentTime = 0;
+      } catch (e) {}
+      this.currentAudio = null;
+    }
+
+    // Immediately stop running ambient synth nodes
     if (this.ambientNodes.length > 0) {
       this.ambientNodes.forEach(node => {
         try {
@@ -217,9 +271,31 @@ class LumenAudioEngine {
       this.ambientGain = null;
     }
 
-    if (type === 'off' || !this.isSoundEnabled() || !this.ctx) return;
+    if (type === 'off' || !this.isSoundEnabled()) return;
 
-    // Start new ambient soundscape IMMEDIATELY
+    // 1. Try real audio file or custom uploaded song
+    const targetSource = customSrc || this.soundFiles[type];
+    if (targetSource) {
+      try {
+        const audio = new Audio(targetSource);
+        audio.loop = true;
+        audio.volume = Math.min(1, Math.max(0, volume));
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            this.currentAudio = audio;
+          }).catch(err => {
+            console.warn('Real audio file playback failed, using gentle synth fallback:', err);
+            this.startAmbientSynthesis(type, volume);
+          });
+        }
+        return;
+      } catch (err) {
+        console.warn('Audio tag init error, using synth:', err);
+      }
+    }
+
+    // 2. Synthesizer fallback
     this.startAmbientSynthesis(type, volume);
   }
 

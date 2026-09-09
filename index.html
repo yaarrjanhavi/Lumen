@@ -115,13 +115,18 @@
       </div>
     </aside>
 
-    <!-- Ambient Soundscape Strip (Minimal, No Emojis) -->
+    <!-- Ambient Soundscape & Song Strip -->
     <div class="soundscape-strip">
       <span class="accent-script">soundscape:</span>
       <button class="soundscape-btn active" data-sound="off">stillness</button>
       <button class="soundscape-btn" data-sound="rain">soft rain</button>
       <button class="soundscape-btn" data-sound="garden">garden breeze</button>
       <button class="soundscape-btn" data-sound="bowl">singing bowl</button>
+      <button class="soundscape-btn" data-sound="chime">zen chime</button>
+      <div id="custom-songs-container" style="display: inline-flex; gap: 8px; flex-wrap: wrap;"></div>
+      <button class="soundscape-btn" id="add-song-btn" style="border-style: dashed; border-color: var(--sage); color: var(--ink);" title="Add your own song or audio file">+ add song</button>
+      <input type="file" id="song-file-input" accept="audio/*" style="display: none;">
+      <span id="soundscape-now-playing" class="soundscape-now-playing" style="font-size: 0.8rem; color: var(--sage); margin-left: 6px;"></span>
     </div>
 
     <!-- Hero Section -->
