@@ -1,5 +1,5 @@
 /**
- * Lumen — Vision Board with Drag & Drop Images & Aesthetic Notes
+ * Lumen: Vision Board with Drag & Drop Images & Aesthetic Notes
  * Allows dropping images directly from desktop/files or typing notes.
  */
 
@@ -22,7 +22,6 @@ class LumenVisionBoard {
   bindEvents() {
     if (!this.container) return;
 
-    // Drag & Drop events on the vision board container
     ['dragenter', 'dragover'].forEach(eventName => {
       this.container.addEventListener(eventName, (e) => {
         e.preventDefault();
@@ -47,7 +46,6 @@ class LumenVisionBoard {
       }
     });
 
-    // File input fallback click
     this.fileInput?.addEventListener('change', (e) => {
       if (e.target.files && e.target.files.length > 0) {
         this.handleFiles(e.target.files);
@@ -55,7 +53,6 @@ class LumenVisionBoard {
       }
     });
 
-    // Add note modal trigger
     document.getElementById('vb-add-note-btn')?.addEventListener('click', () => {
       document.getElementById('vision-add-modal')?.classList.add('active');
     });
@@ -130,7 +127,6 @@ class LumenVisionBoard {
       this.container.appendChild(el);
     });
 
-    // Add Dropzone / Upload Placeholder Card
     const addCard = document.createElement('div');
     addCard.className = 'vb-item vb-add-card';
     addCard.title = 'Drag & drop image here, or click to upload';

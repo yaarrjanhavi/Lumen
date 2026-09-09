@@ -1,5 +1,5 @@
 /**
- * Lumen — To-Do List matching user's template
+ * Lumen: To-Do List matching user's template
  * Minimal circular checkboxes with "✓" checkmark and strikethrough.
  */
 
@@ -35,6 +35,15 @@ class LumenTodo {
     if (!this.container) return;
     const todos = window.LumenState.getTodos();
     this.container.innerHTML = '';
+
+    if (todos.length === 0) {
+      this.container.innerHTML = `
+        <div style="font-size: 0.88rem; color: var(--ink-soft); opacity: 0.6; padding: 12px 0; font-style: italic;">
+          no intentions yet. add one below ✿
+        </div>
+      `;
+      return;
+    }
 
     todos.forEach(todo => {
       const item = document.createElement('div');

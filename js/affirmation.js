@@ -1,5 +1,5 @@
 /**
- * Lumen — Daily Affirmation Flip Card matching the user's template
+ * Lumen: Daily Affirmation Flip Card matching the user's template
  */
 
 const AFFIRMATION_LIST = [

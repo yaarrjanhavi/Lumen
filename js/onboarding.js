@@ -1,5 +1,5 @@
 /**
- * Lumen — Conversational Onboarding Flow
+ * Lumen: Conversational Onboarding Flow
  * Soft, gentle 3-step welcome dialogue with Lumi
  */
 

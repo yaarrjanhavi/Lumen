@@ -1,10 +1,9 @@
 /**
- * Lumen — App Coordinator matching user's template
+ * Lumen: App Coordinator matching user's template
  */
 
 class LumenApp {
   init() {
-    // Initialize components
     window.LumenState;
     window.LumenAudio;
     window.LumenOnboarding?.init();
@@ -35,17 +34,29 @@ class LumenApp {
     const heroWhy = document.getElementById('hero-why');
 
     if (heroTitle) {
-      const name = profile.name && profile.name !== 'Gentle Soul' ? profile.name : 'love';
-      heroTitle.innerHTML = `hi ${name}, here's<br>what you're growing`;
+      if (profile.name && profile.name.trim()) {
+        heroTitle.innerHTML = `hi ${profile.name.trim()}, here's<br>what you're growing`;
+      } else {
+        heroTitle.innerHTML = `welcome, here's<br>what you're growing`;
+      }
     }
 
     if (heroGoal) {
-      heroGoal.textContent = `${profile.goal || 'finishing what I started'} ✿`;
+      if (profile.goal && profile.goal.trim()) {
+        heroGoal.textContent = `${profile.goal.trim()} ✿`;
+      } else {
+        heroGoal.textContent = `tap to set your one goal ✿`;
+      }
     }
 
-    if (heroWhy && profile.why) {
-      heroWhy.textContent = `“${profile.why}”`;
-      heroWhy.style.display = 'block';
+    if (heroWhy) {
+      if (profile.why && profile.why.trim()) {
+        heroWhy.textContent = `“${profile.why.trim()}”`;
+        heroWhy.style.display = 'block';
+      } else {
+        heroWhy.textContent = '';
+        heroWhy.style.display = 'none';
+      }
     }
   }
 

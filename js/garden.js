@@ -1,5 +1,5 @@
 /**
- * Lumen — Little Garden Mini-Game
+ * Lumen: Little Garden Mini-Game
  * Minimalist, soft plant tending without emoji clutter.
  * Tapping waters the plant and gently progresses its bloom.
  */

@@ -1,4 +1,4 @@
-# ✿ Lumen — Quiet Personal Sanctuary
+# ✿ Lumen: Quiet Personal Sanctuary
 
 A private, cozy digital manifestation web app designed exactly according to your whimsical reference layout: handwritten journal meets soft botanical illustration meets quiet personal dashboard.
 
@@ -21,7 +21,7 @@ As per your instructions, **no commands were run for you**. You can open Lumen d
 
 ## 📋 Everything You Can Put in Manually (Complete Checklist)
 
-Nothing is required for Lumen to work out of the box — it already includes a self-contained Web Audio API synthesizer for sounds and Google Fonts fallbacks. However, you can personalize everything manually by pasting files into the project folders:
+Nothing is required for Lumen to work out of the box. It already includes a self-contained Web Audio API synthesizer for sounds and Google Fonts fallbacks. However, you can personalize everything manually by pasting files into the project folders:
 
 ### 1. Custom Fonts (from DaFont)
 A dedicated `fonts/` folder has been created for you. When you download fonts from [dafont.com](https://www.dafont.com), paste the `.ttf` or `.otf` files into `c:\Users\Asus\Documents\Lumen\fonts\`:
@@ -41,12 +41,12 @@ A dedicated `fonts/` folder has been created for you. When you download fonts fr
 
 ### 3. Custom Sounds & Sound Effects (Optional)
 Lumen's built-in Web Audio API synthesizer generates soft pops, bubble bursts, and singing bowl chimes automatically. But if you want to use your own audio files, drop `.mp3` or `.wav` files into `c:\Users\Asus\Documents\Lumen\sounds\`:
-- `pop.mp3` — Tactile button tap and to-do check sound.
-- `bubble.mp3` — Sound played when popping background bubbles.
-- `singing-bowl.mp3` (or `chime.mp3`) — Sound played when a focus session finishes.
-- `rain.mp3` — Ambient soft rain soundscape.
-- `garden.mp3` — Ambient garden breeze soundscape.
-- `singing-bowl.mp3` (or `soft-hum.mp3`) — Meditative singing bowl humming soundscape.
+- `pop.mp3`: Tactile button tap and to-do check sound.
+- `bubble.mp3`: Sound played when popping background bubbles.
+- `singing-bowl.mp3` (or `chime.mp3`): Sound played when a focus session finishes.
+- `rain.mp3`: Ambient soft rain soundscape.
+- `garden.mp3`: Ambient garden breeze soundscape.
+- `singing-bowl.mp3` (or `soft-hum.mp3`): Meditative singing bowl humming soundscape.
 
 ---
 

@@ -1,5 +1,5 @@
 /**
- * Lumen — Lumi Companion Chat
+ * Lumen: Lumi Companion Chat
  * Warm, quiet companion tucked in the corner matching the user's template
  */
 
@@ -60,8 +60,8 @@ class LumenCompanion {
 
     if (this.messages && this.messages.children.length === 0) {
       const profile = window.LumenState.getProfile();
-      const name = profile.name && profile.name !== 'Gentle Soul' ? profile.name : 'friend';
-      this.addMessage(`hi ${name} ✿ I'm right here with you. Take a soft breath — how does your heart feel right now?`, 'assistant');
+      const name = profile.name && profile.name.trim() ? profile.name.trim() : 'friend';
+      this.addMessage(`hi ${name} ✿ I'm right here with you. Take a soft breath. How does your heart feel right now?`, 'assistant');
     }
 
     setTimeout(() => this.input?.focus(), 250);
@@ -102,8 +102,8 @@ class LumenCompanion {
   generateResponse(input) {
     const lower = input.toLowerCase();
     const profile = window.LumenState.getProfile();
-    const name = profile.name && profile.name !== 'Gentle Soul' ? profile.name : 'friend';
-    const goal = profile.goal || 'what you started';
+    const name = profile.name && profile.name.trim() ? profile.name.trim() : 'friend';
+    const goal = profile.goal || 'your one goal';
 
     if (lower.includes('doubt') || lower.includes('behind') || lower.includes('compare')) {
       return `Doubt doesn't get a seat at your table, ${name}. Your timeline is entirely your own. Breathe out the rush ✿`;

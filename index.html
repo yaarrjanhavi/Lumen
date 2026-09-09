@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lumen — Quiet Personal Sanctuary</title>
+  <title>Lumen: Quiet Personal Sanctuary</title>
 
   <!-- Pink Spiral Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%23E28CA5' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M16 16c0-2.2 1.8-4 4-4s4 1.8 4 4-2.7 6-6 6-8-3.6-8-8 4.5-10 10-10'/%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%23E28CA5'/%3E%3C/svg%3E">
@@ -88,15 +88,15 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
       <div class="section-inner">
-        <h1 id="hero-title">hi love, here's<br>what you're growing</h1>
+        <h1 id="hero-title">welcome, here's<br>what you're growing</h1>
         <p class="lead accent-script">a quiet little space for the one thing you're focused on</p>
-        <div class="goal-card" id="hero-goal-card" title="Click to update your one focus">
+        <div class="goal-card" id="hero-goal-card" title="Click to set your one focus">
           <div class="tag">
             <span>right now, I'm focused on</span>
             <span style="font-size: 0.72rem; opacity: 0.6;">click to edit</span>
           </div>
-          <div class="goal" id="hero-goal">finishing what I started ✿</div>
-          <div class="why-sub" id="hero-why" style="display: none;">“Because quiet, steady steps honor my peace.”</div>
+          <div class="goal" id="hero-goal">tap to set your one goal ✿</div>
+          <div class="why-sub" id="hero-why" style="display: none;"></div>
         </div>
       </div>
     </section>
@@ -113,7 +113,7 @@
             <div class="step-num">1</div>
             <div>
               <h3>blinders</h3>
-              <p>don't scroll, don't compare — do your own thing, quietly.</p>
+              <p>don't scroll, don't compare. do your own thing, quietly.</p>
             </div>
           </div>
           <div class="step" data-step="2" title="Click to view focus card">
@@ -173,11 +173,7 @@
           <!-- Journal Card -->
           <div class="card" id="journal">
             <h3>journal</h3>
-            <div class="journal-lines" id="journal-lines-list">
-              <p>today felt slow, in a good way.</p>
-              <p>grateful for the quiet mornings.</p>
-              <p>still focused on the one thing.</p>
-            </div>
+            <div class="journal-lines" id="journal-lines-list"></div>
             <div class="journal-prompt" id="journal-prompt-btn">✿ what are you grateful for today?</div>
 
             <!-- Inline quick-write form -->
@@ -333,11 +329,11 @@
         </div>
         <div>
           <label style="font-size: 0.85rem; color: var(--ink-soft); font-weight: 600;">the one thing right now</label>
-          <input type="text" id="edit-profile-goal" placeholder="finishing what I started" style="margin-top: 4px;">
+          <input type="text" id="edit-profile-goal" placeholder="your single focus" style="margin-top: 4px;">
         </div>
         <div>
           <label style="font-size: 0.85rem; color: var(--ink-soft); font-weight: 600;">why this matters (optional)</label>
-          <textarea id="edit-profile-why" rows="2" placeholder="because quiet, steady steps honor my peace" style="margin-top: 4px;"></textarea>
+          <textarea id="edit-profile-why" rows="2" placeholder="why this matters to you" style="margin-top: 4px;"></textarea>
         </div>
         <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
           <button id="goal-save-modal-btn" class="nav-btn" style="background: var(--sage); color: white; border-color: var(--sage); padding: 8px 18px;">save focus ✿</button>
@@ -362,7 +358,7 @@
       <h3 style="font-family: var(--font-display); font-size: 2.1rem; margin-bottom: 4px;">pin a note</h3>
       <p style="font-family: var(--font-accent); font-size: 1.1rem; color: var(--ink-soft); margin-bottom: 16px;">add words or affirmations to your vision board</p>
 
-      <textarea id="vision-note-text" rows="3" placeholder="soft mornings, stay rooted, finish the thing..." style="margin-bottom: 12px;"></textarea>
+      <textarea id="vision-note-text" rows="3" placeholder="words or intentions for your vision board..." style="margin-bottom: 12px;"></textarea>
 
       <div style="display: flex; justify-content: space-between; align-items: center;">
         <div style="display: flex; align-items: center; gap: 6px;">

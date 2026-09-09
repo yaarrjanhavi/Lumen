@@ -1,57 +1,25 @@
 /**
- * Lumen — State Management
+ * Lumen: State Management
  * Persistent storage for user profile, goal, to-dos, journal, calendar, garden, and vision board.
+ * Clean slate: zero mock data.
  */
 
-const STORAGE_KEY = 'lumen_sanctuary_data_v2';
+const STORAGE_KEY = 'lumen_sanctuary_data_v3';
 
 const DEFAULT_STATE = {
   profile: {
-    name: 'love',
-    goal: 'finishing what I started',
-    why: 'because quiet, steady steps honor my peace',
-    onboarded: true
+    name: '',
+    goal: '',
+    why: '',
+    onboarded: false
   },
-  todos: [
-    { id: '1', text: 'morning pages', completed: true, date: new Date().toISOString().slice(0, 10) },
-    { id: '2', text: 'water the garden', completed: true, date: new Date().toISOString().slice(0, 10) },
-    { id: '3', text: 'one focused hour', completed: false, date: new Date().toISOString().slice(0, 10) },
-    { id: '4', text: 'evening gratitude', completed: false, date: new Date().toISOString().slice(0, 10) }
-  ],
-  journal: [
-    {
-      id: 'j1',
-      date: new Date().toISOString().slice(0, 10),
-      timestamp: Date.now() - 3600000 * 4,
-      text: 'today felt slow, in a good way.'
-    },
-    {
-      id: 'j2',
-      date: new Date().toISOString().slice(0, 10),
-      timestamp: Date.now() - 3600000 * 24,
-      text: 'grateful for the quiet mornings.'
-    },
-    {
-      id: 'j3',
-      date: new Date().toISOString().slice(0, 10),
-      timestamp: Date.now() - 3600000 * 48,
-      text: 'still focused on the one thing.'
-    }
-  ],
-  calendarActivity: {
-    [new Date().toISOString().slice(0, 10)]: ['flower']
-  },
+  todos: [],
+  journal: [],
+  calendarActivity: {},
   garden: [
-    { id: 0, plantType: 'flower', stage: 2, lastWatered: Date.now() }
+    { id: 0, plantType: 'flower', stage: 1, lastWatered: 0 }
   ],
-  visionBoard: [
-    { id: 'v1', type: 'note', text: 'soft mornings', bg: 'var(--sky)' },
-    { id: 'v2', type: 'note', text: '✿', bg: 'var(--blush)' },
-    { id: 'v3', type: 'note', text: 'finish the thing', bg: 'var(--sage)' },
-    { id: 'v4', type: 'note', text: 'quiet roots', bg: 'var(--butter)' },
-    { id: 'v5', type: 'note', text: 'stay rooted', bg: 'var(--cream)' },
-    { id: 'v6', type: 'note', text: 'stillness', bg: 'var(--sky)' }
-  ],
+  visionBoard: [],
   settings: {
     soundEnabled: true,
     ambientSound: 'off',
@@ -96,9 +64,10 @@ class LumenState {
   }
 
   setProfile(name, goal, why) {
-    if (name) this.data.profile.name = name.trim();
-    if (goal) this.data.profile.goal = goal.trim();
+    if (name !== undefined) this.data.profile.name = name.trim();
+    if (goal !== undefined) this.data.profile.goal = goal.trim();
     if (why !== undefined) this.data.profile.why = why.trim();
+    this.data.profile.onboarded = true;
     this.save();
   }
 

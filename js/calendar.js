@@ -1,5 +1,5 @@
 /**
- * Lumen — Calendar Component matching the user's template
+ * Lumen: Calendar Component matching the user's template
  * Mon-Sun grid with organic flower marker "✿" on active days
  */
 
@@ -69,8 +69,6 @@ class LumenCalendar {
       this.grid.appendChild(empty);
     }
 
-    const todayStr = new Date().toISOString().slice(0, 10);
-
     // Days of month
     for (let day = 1; day <= daysInMonth; day++) {
       const dayStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
@@ -79,8 +77,8 @@ class LumenCalendar {
       cell.textContent = day;
 
       const activities = window.LumenState.getActivityForDate(dayStr);
-      // Pre-mark some example days or any day user took action
-      if (activities.length > 0 || (day % 3 === 0 && month === new Date().getMonth())) {
+      // Mark day only if user has actual activity logged
+      if (activities.length > 0) {
         cell.classList.add('marked');
       }
 

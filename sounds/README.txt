@@ -1,5 +1,5 @@
 ====================================================================
-LUMEN — CUSTOM SOUNDS & ASSETS FOLDER
+LUMEN: CUSTOM SOUNDS & ASSETS FOLDER
 ====================================================================
 
 NOTE: Lumen has a built-in Web Audio API synthesizer that generates

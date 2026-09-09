@@ -1,5 +1,5 @@
 /**
- * Lumen — Ambient Soundscape Controller
+ * Lumen: Ambient Soundscape Controller
  * Manages minimal soundscape buttons (stillness, soft rain, garden breeze, singing bowl)
  * and the mute toggle in the header.
  */

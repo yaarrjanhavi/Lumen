@@ -1,5 +1,5 @@
 /**
- * Lumen — Pomodoro Focus Timer ("Lock In")
+ * Lumen: Pomodoro Focus Timer ("Lock In")
  * Updates the circular conic-gradient ring and plays a gentle singing bowl chime.
  */
 

@@ -1,5 +1,5 @@
 ====================================================================
-LUMEN — CUSTOM FONTS FOLDER
+LUMEN: CUSTOM FONTS FOLDER
 ====================================================================
 
 You can download fonts from dafont.com (or any font site) and paste 

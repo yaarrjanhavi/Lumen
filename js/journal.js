@@ -1,5 +1,5 @@
 /**
- * Lumen — Journal Component matching the user's template
+ * Lumen: Journal Component matching the user's template
  * Minimal dashed handwritten lines with opt-in prompt
  */
 
@@ -30,7 +30,6 @@ class LumenJournal {
 
   bindEvents() {
     this.promptEl?.addEventListener('click', () => {
-      // Rotate prompt or open write dialog
       this.promptIndex = (this.promptIndex + 1) % PROMPT_ROTATION.length;
       if (this.promptEl) this.promptEl.textContent = PROMPT_ROTATION[this.promptIndex];
       window.LumenAudio?.playPop();
@@ -62,17 +61,13 @@ class LumenJournal {
     const entries = window.LumenState.getJournalEntries();
     this.linesContainer.innerHTML = '';
 
-    // If no entries yet, show default template lines
     if (entries.length === 0) {
       this.linesContainer.innerHTML = `
-        <p>today felt slow, in a good way.</p>
-        <p>grateful for the quiet mornings.</p>
-        <p>still focused on the one thing.</p>
+        <p style="opacity: 0.45; font-style: italic; border-bottom: 1px dashed rgba(74, 66, 55, 0.15);">a clean page... tap below to write your first reflection</p>
       `;
       return;
     }
 
-    // Show up to 3 most recent entries
     entries.slice(0, 3).forEach(entry => {
       const p = document.createElement('p');
       p.textContent = entry.text;

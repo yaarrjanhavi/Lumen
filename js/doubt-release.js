@@ -1,5 +1,5 @@
 /**
- * Lumen — Doubt Release ("Let It Go") matching user's template
+ * Lumen: Doubt Release ("Let It Go") matching user's template
  * User writes a doubt into the card, presses enter, and watches it dissolve into the wind.
  */
 

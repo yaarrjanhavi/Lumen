@@ -1,5 +1,5 @@
 /**
- * Lumen — The Practice: 5-Step Ritual
+ * Lumen: The Practice: 5-Step Ritual
  * Links the five steps along the quiet path to their matching sanctuary spaces
  */
 

@@ -1,5 +1,5 @@
 /**
- * Lumen — Ultra-Fast Instant Audio Engine
+ * Lumen: Ultra-Fast Instant Audio Engine
  * 0ms latency sound synthesis: pops, bubble bursts, singing bowls, and ambient soundscapes
  * start playing immediately on click with zero delay or network stall.
  */
