@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumen — Quiet Personal Sanctuary</title>
+
+  <!-- Pink Spiral Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%23E28CA5' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M16 16c0-2.2 1.8-4 4-4s4 1.8 4 4-2.7 6-6 6-8-3.6-8-8 4.5-10 10-10'/%3E%3Ccircle cx='16' cy='16' r='1.5' fill='%23E28CA5'/%3E%3C/svg%3E">
+  <link rel="alternate icon" href="favicon.svg">
+
+  <!-- Google Fonts fallback (Caveat, Gochi Hand, Quicksand) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Gochi+Hand&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+
+  <!-- Floating Background Bubbles & Subtle Affirmation Drift -->
+  <div class="bubble-field">
+    <div class="bubble b1" title="pop me"></div>
+    <div class="bubble b2" title="pop me"></div>
+    <div class="bubble b3" title="pop me"></div>
+    <div class="bubble b4" title="pop me"></div>
+    <div class="bubble b5" title="pop me"></div>
+    <div class="bubble b6" title="pop me"></div>
+
+    <div class="affirmation a1">you're already growing</div>
+    <div class="affirmation a2">one thing at a time</div>
+    <div class="affirmation a3">you're doing this</div>
+    <div class="affirmation a4">breathe in, breathe out</div>
+    <div class="affirmation a5">doubt has no home here</div>
+  </div>
+
+  <div class="page">
+
+    <!-- Header Navigation with Direct Links to Every Section -->
+    <nav class="site-nav">
+      <a href="#hero" class="logo">
+        <svg class="header-spiral" viewBox="0 0 32 32" fill="none" stroke="#E28CA5" stroke-width="2.2" stroke-linecap="round">
+          <path d="M16 16c0-2.2 1.8-4 4-4s4 1.8 4 4-2.7 6-6 6-8-3.6-8-8 4.5-10 10-10"/>
+          <circle cx="16" cy="16" r="1.5" fill="#E28CA5"/>
+        </svg>
+        <span>lumen</span>
+      </a>
+
+      <!-- Direct Section Buttons -->
+      <div class="nav-links">
+        <a href="#practice" class="nav-link">practice</a>
+        <a href="#calendar" class="nav-link">calendar</a>
+        <a href="#journal" class="nav-link">journal</a>
+        <a href="#todo" class="nav-link">to-do</a>
+        <a href="#lockin" class="nav-link">lock in</a>
+        <a href="#garden" class="nav-link">garden</a>
+        <a href="#visionboard" class="nav-link">vision board</a>
+        <a href="#letitgo" class="nav-link">let it go</a>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Sound Mute Toggle -->
+        <button id="sound-toggle-btn" class="nav-btn nav-btn-icon" title="Toggle audio / pop sounds" aria-label="Toggle Sound">
+          <svg id="sound-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+
+        <!-- Edit Profile / Sanctuary Settings -->
+        <button id="edit-profile-btn" class="nav-btn">
+          <span>my focus</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Ambient Soundscape Strip (Minimal, No Emojis) -->
+    <div class="soundscape-strip">
+      <span class="accent-script">soundscape:</span>
+      <button class="soundscape-btn active" data-sound="off">stillness</button>
+      <button class="soundscape-btn" data-sound="rain">soft rain</button>
+      <button class="soundscape-btn" data-sound="garden">garden breeze</button>
+      <button class="soundscape-btn" data-sound="bowl">singing bowl</button>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <div class="section-inner">
+        <h1 id="hero-title">hi love, here's<br>what you're growing</h1>
+        <p class="lead accent-script">a quiet little space for the one thing you're focused on</p>
+        <div class="goal-card" id="hero-goal-card" title="Click to update your one focus">
+          <div class="tag">
+            <span>right now, I'm focused on</span>
+            <span style="font-size: 0.72rem; opacity: 0.6;">click to edit</span>
+          </div>
+          <div class="goal" id="hero-goal">finishing what I started ✿</div>
+          <div class="why-sub" id="hero-why" style="display: none;">“Because quiet, steady steps honor my peace.”</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The Practice Section -->
+    <section id="practice">
+      <div class="section-inner">
+        <div class="sec-head">
+          <h2>the practice</h2>
+          <div class="accent-script">five small rules, one quiet path</div>
+        </div>
+        <div class="practice-path">
+          <div class="step" data-step="1" title="Click to center yourself">
+            <div class="step-num">1</div>
+            <div>
+              <h3>blinders</h3>
+              <p>don't scroll, don't compare — do your own thing, quietly.</p>
+            </div>
+          </div>
+          <div class="step" data-step="2" title="Click to view focus card">
+            <div class="step-num">2</div>
+            <div>
+              <h3>one goal</h3>
+              <p>just one. full focus, no splitting your energy.</p>
+            </div>
+          </div>
+          <div class="step" data-step="3" title="Click to release a doubt">
+            <div class="step-num">3</div>
+            <div>
+              <h3>no doubt allowed in</h3>
+              <p>doubt doesn't get a seat at this table.</p>
+            </div>
+          </div>
+          <div class="step" data-step="4" title="Click to start focus session">
+            <div class="step-num">4</div>
+            <div>
+              <h3>lock in</h3>
+              <p>stay home, stay in it. walks are for movement, not escape.</p>
+            </div>
+          </div>
+          <div class="step" data-step="5" title="Click to write gratitude in journal">
+            <div class="step-num">5</div>
+            <div>
+              <h3>gratitude &amp; your why</h3>
+              <p>stay rooted in why you started.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Your Space Section: Calendar, Journal, To-Do, Lock In, Garden, Affirmation -->
+    <section id="space">
+      <div class="section-inner">
+        <div class="sec-head">
+          <h2>your space</h2>
+          <div class="accent-script">calendar, journal, list, and a little garden</div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Calendar Card -->
+          <div class="card" id="calendar">
+            <div class="cal-month-header">
+              <h3>calendar</h3>
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <button class="cal-nav-btn" id="cal-prev" title="Previous Month">←</button>
+                <span class="cal-month-name" id="cal-month-title">september 2026</span>
+                <button class="cal-nav-btn" id="cal-next" title="Next Month">→</button>
+              </div>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </div>
+
+          <!-- Journal Card -->
+          <div class="card" id="journal">
+            <h3>journal</h3>
+            <div class="journal-lines" id="journal-lines-list">
+              <p>today felt slow, in a good way.</p>
+              <p>grateful for the quiet mornings.</p>
+              <p>still focused on the one thing.</p>
+            </div>
+            <div class="journal-prompt" id="journal-prompt-btn">✿ what are you grateful for today?</div>
+
+            <!-- Inline quick-write form -->
+            <div class="journal-compose" id="journal-input-drawer" style="display: none;">
+              <form id="journal-quick-form" style="display: flex; gap: 8px;">
+                <input type="text" id="journal-quick-input" placeholder="write your reflection here..." autocomplete="off">
+                <button type="submit" class="nav-btn" style="background: var(--sage); color: white; border-color: var(--sage);">save</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- To-Do Card -->
+          <div class="card" id="todo">
+            <h3>to-do</h3>
+            <div class="todo-list-container" id="todo-list"></div>
+            <form id="todo-form" class="todo-form">
+              <input type="text" id="todo-input" placeholder="new quiet intention..." autocomplete="off">
+              <button type="submit" class="nav-btn" style="flex-shrink: 0;">add</button>
+            </form>
+          </div>
+
+          <!-- Pomodoro / Lock In Card -->
+          <div class="card pomodoro-card" id="lockin">
+            <h3>lock in</h3>
+            <div class="pomo-ring" id="pomo-ring" title="Tap to start / pause">
+              <div class="pomo-time" id="pomo-time">25:00</div>
+            </div>
+            <div class="pomo-label" id="pomo-label">focus session</div>
+            <div class="pomo-actions">
+              <button class="nav-btn" id="pomo-toggle-btn">begin</button>
+              <button class="nav-btn" id="pomo-reset-btn">reset</button>
+              <button class="nav-btn pomo-preset-btn" data-mins="15">15m</button>
+              <button class="nav-btn pomo-preset-btn" data-mins="25">25m</button>
+            </div>
+          </div>
+
+          <!-- Little Garden Game Card -->
+          <div class="card garden-card" id="garden">
+            <h3>little garden</h3>
+            <div id="garden-tap-zone" title="Tap to water">
+              <div id="garden-pot-display"></div>
+            </div>
+            <div class="garden-hint" id="garden-hint-text">tap to water · growing quietly</div>
+          </div>
+
+          <!-- Today's Affirmation Card -->
+          <div class="card flip-card" id="affirmation">
+            <h3>today's affirmation</h3>
+            <div class="flip-face" id="affirmation-face" title="Tap to flip to next affirmation">
+              <p id="affirmation-quote-text">you don't have to rush this.</p>
+              <span class="author">tap to cycle ✿</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vision Board Section with Drag & Drop Images -->
+    <section id="visionboard">
+      <div class="section-inner">
+        <div class="sec-head">
+          <h2>vision board</h2>
+          <div class="accent-script">drag &amp; drop images or notes · the life you're building</div>
+        </div>
+
+        <div class="vision-board-header-bar">
+          <span style="font-size: 0.85rem; color: var(--ink-soft);">drop images directly onto the board below:</span>
+          <div style="display: flex; gap: 8px;">
+            <button id="vb-add-note-btn" class="nav-btn">+ add note</button>
+          </div>
+        </div>
+
+        <!-- Hidden input for file picking fallback -->
+        <input type="file" id="vb-file-input" accept="image/*" style="display: none;" multiple>
+
+        <!-- Vision Board Grid -->
+        <div class="vision-board" id="vision-board-grid"></div>
+      </div>
+    </section>
+
+    <!-- Let It Go (Doubt Release) & Growing Steady Section -->
+    <section id="letitgo">
+      <div class="section-inner grid-2">
+        <div class="card">
+          <h3>let it go</h3>
+          <div class="doubt-input-box">
+            <textarea id="doubt-input" class="doubt-input" rows="2" placeholder="what if it doesn't work out..."></textarea>
+          </div>
+          <div class="doubt-note" id="doubt-note">
+            <span>write it down, then watch it float away.</span>
+            <button id="doubt-release-btn" class="nav-btn" style="padding: 2px 10px; font-size: 0.78rem;">release ✿</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>growing steady</h3>
+          <div class="vine-wrap">
+            <svg viewBox="0 0 300 60">
+              <path d="M10 50 Q60 10, 110 40 T210 30 T290 45" stroke="#C7D6B8" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <circle cx="10" cy="50" r="4" fill="#C7D6B8"/>
+              <circle cx="110" cy="40" r="4" fill="#F5D9E6"/>
+              <circle cx="210" cy="30" r="4" fill="#EFE0A8"/>
+              <circle cx="290" cy="45" r="5" fill="#C7D6B8"/>
+            </svg>
+          </div>
+          <p style="font-size: 0.82rem; color: var(--ink-soft); text-align: center; margin-top: 8px;">consistency over time · quiet roots</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="script">lumen ✿</div>
+      <div class="sub">a quiet space, made for one thing at a time</div>
+    </footer>
+
+  </div><!-- /.page -->
+
+  <!-- Lumi Floating Chat Bubble & Drawer -->
+  <div class="lumi-bubble" id="lumi-trigger" title="Talk softly with Lumi">lumi</div>
+
+  <div class="lumi-chat-drawer" id="lumi-drawer">
+    <div class="lumi-chat-header">
+      <div>
+        <h4>lumi ✿</h4>
+        <span>gentle companion</span>
+      </div>
+      <button class="modal-close" id="lumi-close-btn" style="position: static; width: 26px; height: 26px;">✕</button>
+    </div>
+    <div class="lumi-quick-row">
+      <button class="lumi-chip" data-text="feeling doubtful today">feeling doubtful</button>
+      <button class="lumi-chip" data-text="remind me of my one goal">my one goal</button>
+      <button class="lumi-chip" data-text="give me a moment of quiet grounding">ground me</button>
+    </div>
+    <div class="lumi-messages" id="lumi-messages-box"></div>
+    <div class="lumi-input-bar">
+      <input type="text" id="lumi-chat-input" placeholder="speak softly..." autocomplete="off">
+      <button id="lumi-send-btn" class="nav-btn" style="background: var(--sage); color: white; border-color: var(--sage);">send</button>
+    </div>
+  </div>
+
+  <!-- Profile & One Goal Edit Modal -->
+  <div class="modal-overlay" id="goal-edit-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="goal-modal-close">✕</button>
+      <h3 style="font-family: var(--font-display); font-size: 2.2rem; margin-bottom: 4px;">your sanctuary</h3>
+      <p style="font-family: var(--font-accent); font-size: 1.15rem; color: var(--ink-soft); margin-bottom: 20px;">update your quiet focus whenever you need</p>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <label style="font-size: 0.85rem; color: var(--ink-soft); font-weight: 600;">what should I call you?</label>
+          <input type="text" id="edit-profile-name" placeholder="your name or nickname" style="margin-top: 4px;">
+        </div>
+        <div>
+          <label style="font-size: 0.85rem; color: var(--ink-soft); font-weight: 600;">the one thing right now</label>
+          <input type="text" id="edit-profile-goal" placeholder="finishing what I started" style="margin-top: 4px;">
+        </div>
+        <div>
+          <label style="font-size: 0.85rem; color: var(--ink-soft); font-weight: 600;">why this matters (optional)</label>
+          <textarea id="edit-profile-why" rows="2" placeholder="because quiet, steady steps honor my peace" style="margin-top: 4px;"></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; margin-top: 8px;">
+          <button id="goal-save-modal-btn" class="nav-btn" style="background: var(--sage); color: white; border-color: var(--sage); padding: 8px 18px;">save focus ✿</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calendar Day Note Modal -->
+  <div class="modal-overlay" id="calendar-day-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('calendar-day-modal').classList.remove('active')">✕</button>
+      <h3 id="cal-summary-date" style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 8px;">day note</h3>
+      <div id="cal-summary-content"></div>
+    </div>
+  </div>
+
+  <!-- Vision Board Add Note Modal -->
+  <div class="modal-overlay" id="vision-add-modal">
+    <div class="modal-content">
+      <button class="modal-close" id="vision-modal-close">✕</button>
+      <h3 style="font-family: var(--font-display); font-size: 2.1rem; margin-bottom: 4px;">pin a note</h3>
+      <p style="font-family: var(--font-accent); font-size: 1.1rem; color: var(--ink-soft); margin-bottom: 16px;">add words or affirmations to your vision board</p>
+
+      <textarea id="vision-note-text" rows="3" placeholder="soft mornings, stay rooted, finish the thing..." style="margin-bottom: 12px;"></textarea>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 6px;">
+          <span style="font-size: 0.82rem; color: var(--ink-soft);">color:</span>
+          <select id="vision-note-color" style="padding: 4px 8px; border-radius: 8px; border: 1px solid rgba(74,66,55,0.18);">
+            <option value="var(--sky)">sky blue</option>
+            <option value="var(--blush)">blush pink</option>
+            <option value="var(--sage)">sage green</option>
+            <option value="var(--butter)">butter yellow</option>
+            <option value="var(--cream)">soft cream</option>
+          </select>
+        </div>
+        <button id="vision-save-btn" class="nav-btn" style="background: var(--sage); color: white; border-color: var(--sage);">pin note</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/state.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/ritual.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/journal.js"></script>
+  <script src="js/todo.js"></script>
+  <script src="js/pomodoro.js"></script>
+  <script src="js/garden.js"></script>
+  <script src="js/doubt-release.js"></script>
+  <script src="js/affirmation.js"></script>
+  <script src="js/visionboard.js"></script>
+  <script src="js/ambient.js"></script>
+  <script src="js/lumi.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

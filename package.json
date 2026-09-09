@@ -1,0 +1,18 @@
+{
+  "name": "lumen-sanctuary",
+  "version": "1.0.0",
+  "description": "A whimsical, dreamy personal manifestation web app",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "npx serve ."
+  },
+  "keywords": ["manifestation", "journal", "pomodoro", "botanical", "whimsical", "cozy"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.4.2"
+  }
+}

@@ -1,0 +1,786 @@
+/* ==========================================================================
+   Lumen — Components Stylesheet
+   Faithfully matching the user's reference design with full interactivity
+   ========================================================================== */
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 70px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6vw, 4.2rem);
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.hero .lead {
+  font-family: var(--font-accent);
+  font-size: 1.3rem;
+  color: var(--ink-soft);
+  margin-top: 10px;
+}
+
+.goal-card {
+  display: inline-block;
+  margin-top: 38px;
+  background: var(--white);
+  border-radius: 26px 26px 30px 24px;
+  padding: 22px 40px;
+  box-shadow: 0 10px 30px rgba(120, 100, 70, 0.08);
+  transform: rotate(-1.2deg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+  text-align: left;
+  max-width: 580px;
+}
+
+.goal-card:hover {
+  transform: rotate(0deg) translateY(-3px);
+  box-shadow: 0 14px 34px rgba(120, 100, 70, 0.12);
+}
+
+.goal-card .tag {
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.goal-card .goal {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-top: 4px;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.goal-card .why-sub {
+  font-family: var(--font-accent);
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  border-top: 1px dashed rgba(74, 66, 55, 0.15);
+  padding-top: 6px;
+}
+
+/* ---------- Practice Path ---------- */
+.practice-path {
+  position: relative;
+  margin-top: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  max-width: 520px;
+  margin-bottom: 52px;
+  background: var(--white);
+  border-radius: 28px;
+  padding: 22px 26px;
+  box-shadow: 0 8px 24px rgba(120, 100, 70, 0.07);
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease;
+}
+
+.step:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(120, 100, 70, 0.12);
+}
+
+.step:nth-child(odd) {
+  margin-left: 0;
+  border-top-left-radius: 8px;
+}
+
+.step:nth-child(even) {
+  margin-left: auto;
+  border-top-right-radius: 8px;
+}
+
+.step-num {
+  font-family: var(--font-display);
+  font-size: 2.3rem;
+  color: var(--sage);
+  min-width: 40px;
+  line-height: 1;
+}
+
+.step h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin-bottom: 2px;
+  color: var(--ink);
+}
+
+.step p {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Section Headings ---------- */
+.sec-head {
+  text-align: center;
+  margin-bottom: 46px;
+}
+
+.sec-head h2 {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  color: var(--ink);
+}
+
+.sec-head .accent-script {
+  color: var(--ink-soft);
+  font-size: 1.15rem;
+}
+
+/* ---------- Card Grid ---------- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 8px 24px rgba(120, 100, 70, 0.07);
+  display: flex;
+  flex-direction: column;
+}
+
+.card h3 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+
+/* ---------- Calendar ---------- */
+.cal-month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.cal-month-name {
+  font-family: var(--font-accent);
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+}
+
+.cal-nav-btn {
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.cal-nav-btn:hover {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.cal-day-label {
+  font-size: 0.76rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-weight: 600;
+  padding-bottom: 4px;
+}
+
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.cal-day:hover {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.cal-day.empty {
+  cursor: default;
+  background: transparent !important;
+}
+
+.cal-day.marked {
+  background: var(--sage);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.cal-day.marked::after {
+  content: "✿";
+  position: absolute;
+  top: -6px;
+  right: -2px;
+  font-size: 0.7rem;
+  color: var(--blush);
+}
+
+/* ---------- Journal ---------- */
+.journal-lines {
+  min-height: 120px;
+  flex-grow: 1;
+}
+
+.journal-lines p {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--ink-soft);
+  border-bottom: 1px dashed rgba(74, 66, 55, 0.2);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.journal-prompt {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 10px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  user-select: none;
+}
+
+.journal-prompt:hover {
+  color: var(--ink);
+}
+
+/* Journal input inline drawer */
+.journal-compose {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ---------- To-Do ---------- */
+.todo-list-container {
+  flex-grow: 1;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  transition: opacity 0.2s ease;
+}
+
+.todo-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--sage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.todo-check.done {
+  background: var(--sage);
+  color: white;
+}
+
+.todo-item span {
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+.todo-item.done-text span {
+  color: var(--ink-soft);
+  text-decoration: line-through;
+  text-decoration-color: rgba(74, 66, 55, 0.3);
+}
+
+.todo-delete {
+  background: transparent;
+  border: none;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.todo-item:hover .todo-delete {
+  opacity: 0.6;
+}
+
+.todo-delete:hover {
+  opacity: 1;
+}
+
+.todo-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* ---------- Pomodoro / Lock In ---------- */
+.pomodoro-card {
+  text-align: center;
+}
+
+.pomo-ring {
+  width: 150px;
+  height: 150px;
+  margin: 10px auto 16px;
+  border-radius: 50%;
+  background: conic-gradient(var(--sage) 0deg, #eee 0deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(120, 100, 70, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.pomo-ring:hover {
+  transform: scale(1.03);
+}
+
+.pomo-ring::before {
+  content: "";
+  position: absolute;
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  background: var(--white);
+}
+
+.pomo-time {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--ink);
+}
+
+.pomo-label {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.pomo-actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+/* ---------- Little Garden Game ---------- */
+.garden-card {
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.garden-pot-svg {
+  width: 90px;
+  height: 90px;
+  margin: 6px auto 0;
+  transition: transform 0.25s ease;
+}
+
+.garden-card:hover .garden-pot-svg {
+  transform: scale(1.06);
+}
+
+.garden-hint {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+.water-splash {
+  position: absolute;
+  pointer-events: none;
+  font-size: 0.75rem;
+  color: #6DB3E8;
+  animation: splashFade 0.6s ease-out forwards;
+}
+
+@keyframes splashFade {
+  0% { transform: translateY(0) scale(0.6); opacity: 1; }
+  100% { transform: translateY(-24px) scale(1.2); opacity: 0; }
+}
+
+/* ---------- Today's Affirmation Flip Card ---------- */
+.flip-card {
+  text-align: center;
+  cursor: pointer;
+}
+
+.flip-face {
+  background: linear-gradient(135deg, var(--blush), var(--sky));
+  border-radius: 20px;
+  padding: 30px 20px;
+  margin-top: 8px;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-face:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(120, 100, 70, 0.08);
+}
+
+.flip-face p {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.flip-face .author {
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+/* ---------- Vision Board (Drag & Drop) ---------- */
+.vision-board-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.vision-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 10px;
+  border: 2px dashed transparent;
+  border-radius: 20px;
+  padding: 4px;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.vision-board.drag-over {
+  border-color: var(--sage);
+  background: rgba(199, 214, 184, 0.2);
+}
+
+.vb-item {
+  aspect-ratio: 1;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-accent);
+  font-size: 0.95rem;
+  text-align: center;
+  padding: 12px;
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(120, 100, 70, 0.06);
+}
+
+.vb-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(120, 100, 70, 0.1);
+}
+
+.vb-item .vb-delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+}
+
+.vb-item:hover .vb-delete-btn {
+  display: flex;
+}
+
+.vb1 { background: var(--sky); }
+.vb2 { background: var(--blush); font-size: 1.4rem; }
+.vb3 { background: var(--sage); color: white; }
+.vb4 { background: var(--butter); }
+.vb5 { background: var(--cream); border: 1px solid rgba(0,0,0,0.05); }
+.vb6 { background: var(--sky); font-size: 1.4rem; }
+
+/* Dropzone placeholder card */
+.vb-add-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px dashed rgba(74, 66, 55, 0.25);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.vb-add-card:hover {
+  background: var(--white);
+  border-color: var(--sage);
+}
+
+/* ---------- Doubt Release ("Let It Go") ---------- */
+.doubt-input-box {
+  position: relative;
+}
+
+.doubt-input {
+  margin-top: 10px;
+  background: var(--cream);
+  border-radius: 16px;
+  padding: 16px 18px;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--ink-soft);
+  border: 1px dashed rgba(74, 66, 55, 0.25);
+  width: 100%;
+  outline: none;
+  resize: none;
+}
+
+.doubt-input:focus {
+  border-color: var(--sage);
+  background: var(--white);
+}
+
+.doubt-note {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ---------- Growth Timeline / Vine ---------- */
+.vine-wrap {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.vine-wrap svg {
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  text-align: center;
+  padding: 60px 8vw 80px;
+}
+
+footer .script {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--ink);
+}
+
+footer .sub {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-top: 8px;
+}
+
+/* ---------- Lumi Floating Chat Bubble ---------- */
+.lumi-bubble {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 500;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blush), var(--butter));
+  box-shadow: 0 10px 26px rgba(120, 100, 70, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+}
+
+.lumi-bubble:hover {
+  transform: scale(1.08);
+}
+
+/* Lumi Chat Drawer Panel */
+.lumi-chat-drawer {
+  position: fixed;
+  bottom: 102px;
+  right: 28px;
+  width: 350px;
+  max-width: calc(100vw - 40px);
+  height: 480px;
+  max-height: calc(100vh - 120px);
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(74, 66, 55, 0.18);
+  border: 1px solid rgba(74, 66, 55, 0.08);
+  z-index: 501;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.96);
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.lumi-chat-drawer.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+.lumi-chat-header {
+  padding: 14px 18px;
+  background: linear-gradient(135deg, var(--blush), var(--cream));
+  border-bottom: 1px solid rgba(74, 66, 55, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lumi-chat-header h4 {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: var(--ink);
+}
+
+.lumi-chat-header span {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-left: 6px;
+}
+
+.lumi-messages {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lumi-msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.lumi-msg.assistant {
+  align-self: flex-start;
+  background: var(--cream);
+  border-bottom-left-radius: 4px;
+  color: var(--ink);
+}
+
+.lumi-msg.user {
+  align-self: flex-end;
+  background: var(--sage);
+  color: var(--white);
+  border-bottom-right-radius: 4px;
+}
+
+.lumi-quick-row {
+  display: flex;
+  gap: 6px;
+  padding: 6px 14px;
+  overflow-x: auto;
+}
+
+.lumi-chip {
+  background: var(--cream);
+  border: 1px solid rgba(74, 66, 55, 0.12);
+  border-radius: 9999px;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: var(--font-body);
+}
+
+.lumi-chip:hover {
+  background: var(--white);
+  color: var(--ink);
+}
+
+.lumi-input-bar {
+  padding: 10px 14px;
+  border-top: 1px solid rgba(74, 66, 55, 0.08);
+  display: flex;
+  gap: 8px;
+}
+
+.lumi-input-bar input {
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  border-radius: 9999px;
+}
+
+@media (max-width: 720px) {
+  .hero h1 { font-size: 2.8rem; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .vision-board { grid-template-columns: repeat(2, 1fr); }
+  .step { max-width: 100%; }
+  .step:nth-child(even) { margin-left: 0; }
+}
