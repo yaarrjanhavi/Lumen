@@ -4,24 +4,31 @@
 
 class LumenApp {
   init() {
-    window.LumenState;
-    window.LumenAudio;
-    window.LumenOnboarding?.init();
-    window.LumenRitual?.init();
-    window.LumenCalendar?.init();
-    window.LumenJournal?.init();
-    window.LumenTodo?.init();
-    window.LumenPomodoro?.init();
-    window.LumenGarden?.init();
-    window.LumenDoubtRelease?.init();
-    window.LumenAffirmation?.init();
-    window.LumenVisionBoard?.init();
-    window.LumenAmbient?.init();
-    window.LumenCompanion?.init();
+    const modules = [
+      ['Ritual', window.LumenRitual],
+      ['Calendar', window.LumenCalendar],
+      ['Journal', window.LumenJournal],
+      ['Todo', window.LumenTodo],
+      ['Pomodoro', window.LumenPomodoro],
+      ['Garden', window.LumenGarden],
+      ['DoubtRelease', window.LumenDoubtRelease],
+      ['Affirmation', window.LumenAffirmation],
+      ['VisionBoard', window.LumenVisionBoard],
+      ['Ambient', window.LumenAmbient],
+      ['Companion', window.LumenCompanion]
+    ];
 
-    this.renderHero();
-    this.bindNavLinks();
-    this.initPoppableBubbles();
+    modules.forEach(([name, mod]) => {
+      try {
+        mod?.init?.();
+      } catch (err) {
+        console.warn(`Error initializing ${name}:`, err);
+      }
+    });
+
+    try { this.renderHero(); } catch (e) { console.warn(e); }
+    try { this.bindNavLinks(); } catch (e) { console.warn(e); }
+    try { this.initPoppableBubbles(); } catch (e) { console.warn(e); }
 
     window.addEventListener('lumen:profile-updated', () => this.renderHero());
     window.addEventListener('lumen:state-changed', () => this.renderHero());

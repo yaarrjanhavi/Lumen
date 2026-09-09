@@ -561,6 +561,13 @@
   display: flex;
 }
 
+@media (hover: none) {
+  .vb-item .vb-delete-btn {
+    display: flex;
+    opacity: 0.75;
+  }
+}
+
 .vb1 { background: var(--sky); }
 .vb2 { background: var(--blush); font-size: 1.4rem; }
 .vb3 { background: var(--sage); color: white; }
@@ -697,6 +704,7 @@ footer .sub {
   flex-direction: column;
   overflow: hidden;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transform: translateY(16px) scale(0.96);
   transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
@@ -704,6 +712,7 @@ footer .sub {
 
 .lumi-chat-drawer.open {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
   transform: translateY(0) scale(1);
 }

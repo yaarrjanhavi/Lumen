@@ -59,11 +59,6 @@ class LumenCompanion {
         e.stopPropagation();
         this.toggle();
       };
-      this.bubble.ontouchend = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        this.toggle();
-      };
     }
 
     const closeBtn = document.getElementById('lumi-close-btn');

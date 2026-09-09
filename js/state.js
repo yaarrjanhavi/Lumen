@@ -19,7 +19,44 @@ const DEFAULT_STATE = {
   garden: [
     { id: 0, plantType: 'flower', stage: 1, lastWatered: 0 }
   ],
-  visionBoard: [],
+  visionBoard: [
+    {
+      id: 'vb_mock_1',
+      type: 'image',
+      imageUrl: 'https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&auto=format&fit=crop&q=80',
+      name: 'Lotus Blossom'
+    },
+    {
+      id: 'vb_mock_2',
+      type: 'note',
+      text: 'bloom at your own quiet pace ✿',
+      bg: 'var(--blush)'
+    },
+    {
+      id: 'vb_mock_3',
+      type: 'image',
+      imageUrl: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&auto=format&fit=crop&q=80',
+      name: 'Peaceful Horizon'
+    },
+    {
+      id: 'vb_mock_4',
+      type: 'note',
+      text: 'one thing at a time is enough',
+      bg: 'var(--butter)'
+    },
+    {
+      id: 'vb_mock_5',
+      type: 'image',
+      imageUrl: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=500&auto=format&fit=crop&q=80',
+      name: 'Morning Pages'
+    },
+    {
+      id: 'vb_mock_6',
+      type: 'note',
+      text: 'deep quiet roots · no rush',
+      bg: 'var(--sky)'
+    }
+  ],
   settings: {
     soundEnabled: true,
     ambientSound: 'off',
@@ -37,9 +74,13 @@ class LumenState {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         const parsed = JSON.parse(stored);
+        const visionBoard = (parsed.visionBoard && parsed.visionBoard.length > 0)
+          ? parsed.visionBoard
+          : DEFAULT_STATE.visionBoard;
         return {
           ...DEFAULT_STATE,
           ...parsed,
+          visionBoard,
           profile: { ...DEFAULT_STATE.profile, ...(parsed.profile || {}) },
           settings: { ...DEFAULT_STATE.settings, ...(parsed.settings || {}) }
         };
