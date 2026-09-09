@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node copy-assets.js",
+    "postbuild": "node copy-assets.js",
     "preview": "vite preview",
     "serve": "npx serve ."
   },
