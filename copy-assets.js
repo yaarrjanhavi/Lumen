@@ -6,7 +6,7 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
 }
 
-const items = ['js', 'fonts', 'sounds', 'styles', 'favicon.svg'];
+const items = ['js', 'fonts', 'sounds', 'styles', 'favicon.svg', 'assests', 'assets'];
 
 items.forEach(item => {
   const src = path.resolve(__dirname, item);
