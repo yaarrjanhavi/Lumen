@@ -58,9 +58,9 @@ const DEFAULT_STATE = {
     }
   ],
   settings: {
-    soundEnabled: true,
+    soundEnabled: false,
     ambientSound: 'off',
-    ambientVolume: 0.25
+    ambientVolume: 0
   }
 };
 
@@ -210,7 +210,11 @@ class LumenState {
   }
 
   getSettings() {
-    return this.data.settings;
+    return {
+      ...this.data.settings,
+      soundEnabled: false,
+      ambientSound: 'off'
+    };
   }
 
   setSetting(key, val) {

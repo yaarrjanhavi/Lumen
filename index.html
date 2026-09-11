@@ -20,7 +20,7 @@
 </head>
 <body>
 
-  <!-- Floating Background Bubbles & Subtle Affirmation Drift -->
+  <!-- Floating Background Bubbles -->
   <div class="bubble-field">
     <div class="bubble b1" title="pop me"></div>
     <div class="bubble b2" title="pop me"></div>
@@ -28,12 +28,6 @@
     <div class="bubble b4" title="pop me"></div>
     <div class="bubble b5" title="pop me"></div>
     <div class="bubble b6" title="pop me"></div>
-
-    <div class="affirmation a1">you're already growing</div>
-    <div class="affirmation a2">one thing at a time</div>
-    <div class="affirmation a3">you're doing this</div>
-    <div class="affirmation a4">breathe in, breathe out</div>
-    <div class="affirmation a5">doubt has no home here</div>
   </div>
 
   <div class="page">
@@ -61,14 +55,6 @@
       </div>
 
       <div class="nav-actions">
-        <!-- Sound Mute Toggle -->
-        <button id="sound-toggle-btn" class="nav-btn nav-btn-icon" title="Toggle audio / pop sounds" aria-label="Toggle Sound">
-          <svg id="sound-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-          </svg>
-        </button>
-
         <!-- Edit Profile / Sanctuary Settings -->
         <button id="edit-profile-btn" class="nav-btn">
           <span>my focus</span>
@@ -115,19 +101,6 @@
       </div>
     </aside>
 
-    <!-- Ambient Soundscape & Song Strip -->
-    <div class="soundscape-strip">
-      <span class="accent-script">soundscape:</span>
-      <button class="soundscape-btn active" data-sound="off">stillness</button>
-      <button class="soundscape-btn" data-sound="rain">soft rain</button>
-      <button class="soundscape-btn" data-sound="garden">garden breeze</button>
-      <button class="soundscape-btn" data-sound="bowl">singing bowl</button>
-      <button class="soundscape-btn" data-sound="chime">zen chime</button>
-      <div id="custom-songs-container" style="display: inline-flex; gap: 8px; flex-wrap: wrap;"></div>
-      <button class="soundscape-btn" id="add-song-btn" style="border-style: dashed; border-color: var(--sage); color: var(--ink);" title="Add your own song or audio file">+ add song</button>
-      <input type="file" id="song-file-input" accept="audio/*" style="display: none;">
-      <span id="soundscape-now-playing" class="soundscape-now-playing" style="font-size: 0.8rem; color: var(--sage); margin-left: 6px;"></span>
-    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="hero">

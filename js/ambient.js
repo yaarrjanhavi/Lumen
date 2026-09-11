@@ -13,9 +13,7 @@ class LumenAmbient {
   }
 
   init() {
-    this.loadCustomSongs();
-    this.renderCustomSongs();
-    this.bindEvents();
+    // Sound disabled
   }
 
   loadCustomSongs() {

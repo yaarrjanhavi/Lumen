@@ -27,22 +27,11 @@ class LumenAudioEngine {
   }
 
   init() {
-    try {
-      if (!this.ctx) {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (AudioCtx) {
-          this.ctx = new AudioCtx();
-          this.pregenerateRainBuffer();
-        }
-      }
-      if (this.ctx && this.ctx.state === 'suspended') {
-        this.ctx.resume().catch(() => {});
-      }
-    } catch (e) {}
+    // Sound disabled
   }
 
   isSoundEnabled() {
-    return window.LumenState ? window.LumenState.getSettings().soundEnabled : true;
+    return false;
   }
 
   /**
@@ -359,13 +348,3 @@ class LumenAudioEngine {
 
 window.LumenAudio = new LumenAudioEngine();
 
-// Quick click listener with immediate pop sound
-document.addEventListener('click', (e) => {
-  try {
-    window.LumenAudio?.init();
-    const target = e.target?.closest?.('button, .nav-link, .nav-btn, .step, .cal-day, .todo-check, .pomo-ring, .garden-card');
-    if (target) {
-      window.LumenAudio?.playPop();
-    }
-  } catch (err) {}
-}, { passive: true });
