@@ -93,21 +93,26 @@ class LumenCompanion {
         const current = this.getApiKey();
         const detected = current ? this.detectProvider(current) : '';
         const statusMsg = current
-          ? `Currently active: ${detected.toUpperCase()} key (${current.slice(0, 4)}...${current.slice(-4)})`
+          ? `Currently active: ${detected.toUpperCase()} key (${current.slice(0, 6)}...${current.slice(-4)})`
           : 'No API key configured yet.';
 
         const entered = prompt(
-          `${statusMsg}\n\nEnter your Google Gemini (AIza...) or OpenAI (sk-...) API Key:\n(Stored in your browser. You can also paste into config.js which is gitignored)`,
+          `${statusMsg}\n\nEnter your Google Gemini (starts with AIzaSy...) or OpenAI (sk-...) API Key:\n(Stored privately in your browser's localStorage. Free key available at aistudio.google.com)\n\nLeave empty to remove key.`,
           current
         );
         if (entered !== null) {
           const cleaned = entered.trim().replace(/^Bearer\s+/i, '').replace(/^['"]|['"]$/g, '');
-          localStorage.setItem('lumen_lumi_api_key', cleaned);
           if (cleaned) {
+            localStorage.setItem('lumen_lumi_api_key', cleaned);
             const prov = this.detectProvider(cleaned);
-            this.addMessage(`✿ ${prov.toUpperCase()} API key saved. Lumi is in the manifestation zone with live AI!`, 'assistant');
+            let tip = '';
+            if (cleaned.startsWith('AQ.')) {
+              tip = ' (Note: Key starts with AQ. If Google rejects it, create a standard key starting with AIzaSy... at aistudio.google.com)';
+            }
+            this.addMessage(`✿ ${prov.toUpperCase()} API key saved in browser storage. Lumi is connected to live AI!${tip}`, 'assistant');
           } else {
-            this.addMessage('✿ API key removed. Lumi will use gentle local sanctuary reflections.', 'assistant');
+            localStorage.removeItem('lumen_lumi_api_key');
+            this.addMessage('✿ API key removed from browser storage. Lumi will use gentle local sanctuary reflections.', 'assistant');
           }
         }
       };
@@ -124,8 +129,8 @@ class LumenCompanion {
 
   getApiKey() {
     const raw = (
-      window.LUMEN_CONFIG?.apiKey ||
       localStorage.getItem('lumen_lumi_api_key') ||
+      window.LUMEN_CONFIG?.apiKey ||
       LUMI_CONFIG.apiKey ||
       ''
     );
@@ -136,7 +141,7 @@ class LumenCompanion {
     if (window.LUMEN_CONFIG?.provider && window.LUMEN_CONFIG.provider !== 'auto') {
       return window.LUMEN_CONFIG.provider;
     }
-    if (key.startsWith('AIza')) return 'gemini';
+    if (key.startsWith('AIza') || key.startsWith('AQ.') || key.startsWith('ya29.')) return 'gemini';
     if (key.startsWith('sk-or-')) return 'openrouter';
     if (key.startsWith('gsk_')) return 'groq';
     if (key.startsWith('sk-')) return 'openai';
@@ -196,36 +201,41 @@ class LumenCompanion {
 
     let reply = '';
     let apiError = null;
-    const activeKey = this.getApiKey();
 
-    if (activeKey && activeKey.length > 5) {
-      try {
-        reply = await this.callAIAPI(text, activeKey);
-      } catch (err) {
-        console.error('Lumi API call error:', err);
-        apiError = err.message || String(err);
+    try {
+      const activeKey = this.getApiKey();
+      if (activeKey && activeKey.length > 5) {
+        try {
+          reply = await this.callAIAPI(text, activeKey);
+        } catch (err) {
+          console.error('Lumi API call error:', err);
+          apiError = err.message || String(err);
+        }
       }
-    }
 
-    if (!reply) {
-      if (!activeKey) {
-        await new Promise(r => setTimeout(r, 450));
+      if (!reply) {
+        if (!activeKey) {
+          await new Promise(r => setTimeout(r, 450));
+        }
+        reply = this.generateOfflineResponse(text);
+        if (apiError) {
+          reply += `\n\n*(Lumi note: Live AI call did not complete: ${apiError}. Tap 'key' to check your API key)*`;
+        }
       }
+    } catch (unexpected) {
+      console.error('Unexpected error in Lumi:', unexpected);
       reply = this.generateOfflineResponse(text);
-      if (apiError) {
-        reply += `\n\n*(Lumi note: Live AI call did not complete: ${apiError}. Tap 'key' to check your API key or use config.js)*`;
-      }
+    } finally {
+      typingIndicator.remove();
+      this.addMessage(reply, 'assistant');
+      window.LumenAudio?.playBubblePop();
     }
-
-    typingIndicator.remove();
-    this.addMessage(reply, 'assistant');
-    window.LumenAudio?.playBubblePop();
   }
 
   buildSanctuaryContext() {
     const profile = window.LumenState?.getProfile() || {};
     const visionBoard = window.LumenState?.getVisionBoard() || [];
-    const journal = window.LumenState?.getJournal() || [];
+    const journal = (window.LumenState?.getJournalEntries ? window.LumenState.getJournalEntries() : window.LumenState?.getJournal?.()) || [];
     const todos = window.LumenState?.getTodos() || [];
 
     const name = profile.name && profile.name.trim() ? profile.name.trim() : 'friend';
@@ -244,7 +254,7 @@ class LumenCompanion {
       .join('; ');
 
     const activeTodos = todos
-      .filter(t => !t.done)
+      .filter(t => !t.completed && !t.done)
       .slice(0, 3)
       .map(t => `"${t.text}"`)
       .join(', ');
@@ -272,7 +282,7 @@ ${ctx.activeTodos ? `Active quiet intentions on ${ctx.name}'s list: ${ctx.active
 CORE PRINCIPLES OF LUMEN & YOUR MANIFESTATION ZONE:
 1. THE LAW OF ASSUMPTION & WISH FULFILLED:
    - You NEVER give generic advice, productivity lists, resume formatting tips, or dry corporate clichés.
-   - When ${ctx.name} asks for help visioning, manifesting, or feeling into a desire (like an internship, well-paid job, abundance, peace), guide them straight into the SENSORY, SOMATIC REALITY of having it already.
+   - When ${ctx.name} asks for help visioning, manifesting, or feeling into a desire (like an internship, interview prep, well-paid job, abundance, peace), guide them straight into the SENSORY, SOMATIC REALITY of having it already.
    - Describe the feeling from the end: the warm exhale of relief in the chest upon seeing the offer letter, the quiet ease of waking up knowing they are generously compensated and respected, the feeling of financial security, the soft smile of walking into their day knowing they belong.
    - Speak of their dream as a reality that is already alive, true, and settling into place right now.
 2. SACRED SANCTUARY PILLARS:
@@ -292,6 +302,47 @@ CORE PRINCIPLES OF LUMEN & YOUR MANIFESTATION ZONE:
     const systemPrompt = this.buildSystemPrompt();
     const customModel = window.LUMEN_CONFIG?.model || LUMI_CONFIG.model;
 
+    // 1. Try Vercel Serverless Function /api/lumi (Zero CORS, Brave-friendly, fast)
+    try {
+      const proxyRes = await this.fetchWithTimeout('/api/lumi', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': cleanKey
+        },
+        body: JSON.stringify({
+          userMessage,
+          history: this.chatHistory.slice(-8),
+          systemPrompt,
+          provider,
+          model: customModel,
+          apiKey: cleanKey
+        })
+      }, 5000);
+
+      if (proxyRes.ok) {
+        const proxyData = await proxyRes.json();
+        if (proxyData?.reply) {
+          return proxyData.reply.trim();
+        }
+      } else if (proxyRes.status !== 404) {
+        const errJson = await proxyRes.json().catch(() => ({}));
+        if (errJson?.error) {
+          let msg = errJson.error;
+          if (msg.toLowerCase().includes('api key not valid') || msg.toLowerCase().includes('api_key_invalid')) {
+            msg = 'API key was not recognized by Google. (Ensure you are using an API key starting with AIzaSy... from aistudio.google.com)';
+          }
+          throw new Error(msg);
+        }
+      }
+    } catch (proxyErr) {
+      if (proxyErr.message && !proxyErr.message.includes('404') && !proxyErr.message.includes('Failed to fetch') && !proxyErr.name?.includes('Abort')) {
+        throw proxyErr;
+      }
+      console.warn('Proxy /api/lumi not reachable, falling back to direct browser fetch:', proxyErr);
+    }
+
+    // 2. Direct browser fetch fallback
     if (provider === 'gemini') {
       return await this.callGeminiAPI(userMessage, cleanKey, systemPrompt, customModel);
     } else if (provider === 'openrouter') {
@@ -303,31 +354,54 @@ CORE PRINCIPLES OF LUMEN & YOUR MANIFESTATION ZONE:
     }
   }
 
-  async callGeminiAPI(userMessage, cleanKey, systemPrompt, customModel) {
-    const modelsToTry = customModel ? [customModel] : ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-flash-latest'];
-    
-    // Format conversation history for Gemini (roles must be 'user' and 'model')
-    const history = this.chatHistory
-      .filter(m => !m.content.startsWith('✿') && !m.content.startsWith('*('))
-      .slice(-6);
+  fetchWithTimeout(url, options = {}, timeoutMs = 5000) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeoutMs);
+    return fetch(url, {
+      ...options,
+      signal: controller.signal
+    }).finally(() => clearTimeout(id));
+  }
 
+  async callGeminiAPI(userMessage, cleanKey, systemPrompt, customModel) {
+    const modelsToTry = customModel ? [customModel] : ['gemini-1.5-flash', 'gemini-2.0-flash'];
+    
+    // Strict Gemini compliance: must start with 'user', and alternate turns
     const contents = [];
-    for (const msg of history) {
-      contents.push({
-        role: msg.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: msg.content }]
-      });
+    const cleanHistory = (this.chatHistory || [])
+      .filter(m => m && m.content && !m.content.startsWith('✿') && !m.content.startsWith('*('))
+      .slice(-8);
+
+    for (const item of cleanHistory) {
+      const role = (item.role === 'assistant' || item.role === 'model') ? 'model' : 'user';
+      if (contents.length === 0 && role !== 'user') continue; // Skip initial greeting
+      if (contents.length > 0 && contents[contents.length - 1].role === role) {
+        contents[contents.length - 1].parts[0].text += `\n\n${item.content}`;
+      } else {
+        contents.push({ role, parts: [{ text: item.content }] });
+      }
     }
-    contents.push({
-      role: 'user',
-      parts: [{ text: userMessage }]
-    });
+
+    if (contents.length > 0 && contents[contents.length - 1].role === 'user') {
+      contents[contents.length - 1].parts[0].text += `\n\n${userMessage}`;
+    } else {
+      contents.push({ role: 'user', parts: [{ text: userMessage }] });
+    }
+
+    if (contents[0].role !== 'user') contents.shift();
 
     let lastError = null;
 
     for (const model of modelsToTry) {
       try {
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${cleanKey}`;
+        const headers = {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': cleanKey
+        };
+        if (cleanKey.startsWith('AQ.') || cleanKey.startsWith('ya29.')) {
+          headers['Authorization'] = `Bearer ${cleanKey}`;
+        }
         
         let body = {
           system_instruction: {
@@ -340,35 +414,37 @@ CORE PRINCIPLES OF LUMEN & YOUR MANIFESTATION ZONE:
           }
         };
 
-        let res = await fetch(endpoint, {
+        let res = await this.fetchWithTimeout(endpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: headers,
           body: JSON.stringify(body)
-        });
+        }, 4500);
 
-        // If system_instruction wasn't accepted on this model version, fallback to content prepending
-        if (res.status === 400) {
-          const errData = await res.clone().json().catch(() => ({}));
-          const errMsg = errData?.error?.message || '';
-          if (errMsg.toLowerCase().includes('system_instruction')) {
-            const fallbackContents = JSON.parse(JSON.stringify(contents));
-            if (fallbackContents[0]) {
-              fallbackContents[0].parts[0].text = `[Sanctuary Context: ${systemPrompt}]\n\n${fallbackContents[0].parts[0].text}`;
-            }
-            res = await fetch(endpoint, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                contents: fallbackContents,
-                generationConfig: { temperature: 0.75, maxOutputTokens: 350 }
-              })
-            });
+        let data = await res.json().catch(() => ({}));
+
+        // If system_instruction was rejected on this model, fallback to content prepending
+        if (res.status === 400 && data?.error?.message?.toLowerCase().includes('system_instruction')) {
+          const fallbackContents = JSON.parse(JSON.stringify(contents));
+          if (fallbackContents[0]) {
+            fallbackContents[0].parts[0].text = `[Sanctuary Context: ${systemPrompt}]\n\n${fallbackContents[0].parts[0].text}`;
           }
+          res = await this.fetchWithTimeout(endpoint, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({
+              contents: fallbackContents,
+              generationConfig: { temperature: 0.75, maxOutputTokens: 350 }
+            })
+          }, 4500);
+          data = await res.json().catch(() => ({}));
         }
 
-        const data = await res.json();
         if (!res.ok) {
-          const msg = data?.error?.message || `Gemini error (${res.status})`;
+          let msg = data?.error?.message || `Gemini error (${res.status})`;
+          if (msg.toLowerCase().includes('api key not valid') || msg.toLowerCase().includes('api_key_invalid')) {
+            msg = 'API key was not recognized by Google. (Ensure you are using an API key starting with AIzaSy... from aistudio.google.com)';
+            throw new Error(msg);
+          }
           if (res.status === 404 || msg.toLowerCase().includes('not found')) {
             lastError = new Error(msg);
             continue; // Try next model candidate
@@ -524,6 +600,19 @@ CORE PRINCIPLES OF LUMEN & YOUR MANIFESTATION ZONE:
     const ctx = this.buildSanctuaryContext();
     const name = ctx.name;
     const goal = ctx.goal || 'your quiet vision';
+
+    // Study / Interview Prep / Motivation / Learning
+    if (
+      lower.includes('study') ||
+      lower.includes('interview') ||
+      lower.includes('prep') ||
+      lower.includes('exam') ||
+      lower.includes('learn') ||
+      lower.includes('practice') ||
+      lower.includes('motivat')
+    ) {
+      return `Take a soft breath with me, ${name}. Put your blinders on toward the overwhelming mountain of prep. You don't need to master everything in this single hour—you only need to sit quietly with one concept, one question, one steady thought. The version of you who excels in that interview is not someone you have to invent; they are already taking shape in the quiet work you do today. Open your notes gently, unclench your shoulders, and trust your mind. You are planting roots that will hold you steady ✿`;
+    }
 
     // Career / Internship / Job / Financial visioning
     if (
