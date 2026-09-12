@@ -1,0 +1,12 @@
+# Private Configuration & Secrets (Never committed to GitHub)
+config.js
+js/config.js
+.env
+.env.local
+.env.*.local
+
+# Dependencies & Build Output
+node_modules/
+dist/
+.DS_Store
+Thumbs.db

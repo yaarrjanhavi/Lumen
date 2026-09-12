@@ -8,7 +8,7 @@ export default defineConfig({
       name: 'copy-lumen-assets',
       closeBundle() {
         const distDir = path.resolve(__dirname, 'dist');
-        const items = ['js', 'fonts', 'sounds', 'styles', 'favicon.svg', 'assests', 'assets'];
+        const items = ['js', 'fonts', 'sounds', 'styles', 'favicon.svg', 'assests', 'assets', 'config.js'];
         items.forEach(item => {
           const src = path.resolve(__dirname, item);
           const dest = path.resolve(distDir, item);
